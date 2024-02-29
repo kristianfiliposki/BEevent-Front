@@ -1,11 +1,9 @@
 <script >
-import AppHeader from './components/AppHeader.vue';
 import { store } from './store.js';
 import axios from 'axios';
 
 export default{
   components:{
-    AppHeader,
 
   },
   data(){
@@ -18,8 +16,13 @@ export default{
   methods:{
          call(){
           axios.get("http://127.0.0.1:8000/api/dati").then(risultato=>{
-            store.dati=risultato.data;
-            console.log(store.dati);})
+            store.operators=risultato.data.operators,
+            store.messages=risultato.data.messages,
+            store.votes=risultato.data.votes,
+            store.sponsorships=risultato.data.sponsorships,
+            store.specializations=risultato.data.specializations,
+            store.operator_sponsorship=risultato.data.operator_sponsorship,
+            store.reviews=risultato.data.reviews;})
         },
     },
     mounted(){
@@ -30,14 +33,13 @@ export default{
 </script>
 
 <template>
-  <AppHeader/>
   <div>
     <h1>Organizzare un concerto non è mai stato cosi semplice</h1>
     <div>
       <p>scegli tra i nostri numerosissimi artisti:</p>
       <ul>
-        <li v-for="dato in store.dati ">
-          {{ dato }}
+        <li v-for="dato in store.reviews">
+          {{ dato.comment }}
         </li>
       </ul>
 
