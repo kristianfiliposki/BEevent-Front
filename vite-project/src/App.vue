@@ -33,6 +33,7 @@ export default{
 </script>
 
 <template>
+  <router-view></router-view>
   <div>
     <h1>Organizzare un concerto non è mai stato cosi semplice</h1>
     <div>
