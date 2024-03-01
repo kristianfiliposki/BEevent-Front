@@ -10,10 +10,10 @@ export default {
     <router-link to="/home">
         <img src="/logo/Heavy planning logo.jpg" alt="img">
     </router-link>
-<!--       <router-link to="/dashboard">dashboard</router-link>
- -->    
-      <router-link to="/dashboard">ciao</router-link>  
-      <a href="/dashboard">dashboard</a>
+    <!--       <router-link to="/dashboard">dashboard</router-link>
+     -->    
+      <router-link to="/dashboard">dashboard</router-link>  
+      <a href="/home">ricerca</a>
       <a href=""><i class="fa-solid fa-plus fa-lg fa-fw"></i> Aggiungi operatore</a>
       <a href=""></a>
       <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -45,7 +45,7 @@ export default {
   font-family: sans-serif;
   color: #FD129E;
   text-decoration: none;
-  margin: 3% 0% 0% 0%;
+  margin: 3% 1% 1% 0%;
   font-size: 1.5em;
 }
 #navbar a:hover{
@@ -56,4 +56,5 @@ export default {
 #navbar i {
   color: #FD129E;
 }
+
 </style>
