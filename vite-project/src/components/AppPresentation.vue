@@ -8,12 +8,13 @@ export default {
 
 <template>
   <div class="presentazione">
-    <h1>Ti diamo il benvenuto su Heavy Planning!</h1>
-    <h1>Organizzare un concerto non è mai stato cosi semplice</h1>
-    <h3>Se vuoi dare vita ai tuoi eventi sei capitato nel posto giusto! </h3>
-    <h5>Dal 2022 siamo parte della vita serale Romana e collaboriamo con artisti da tutto il mondo per metterli in
-      contatto con la nostra città, i nostri locali ed i nostri concittadini con voglia di far festa.
-    </h5>
+    <div id="presentazione-cont">
+      <h1>Ti diamo il benvenuto su Heavy Planning!</h1>
+      <h1>Organizzare un concerto non è mai stato cosi semplice!</h1>
+      <h3>Se vuoi dare vita ai tuoi eventi sei capitato nel posto giusto! </h3>
+      <h5>Dal 2022 siamo parte della vita serale Romana e collaboriamo con artisti da tutto il mondo per metterli in
+      contatto con la nostra città, i nostri locali ed i nostri concittadini con voglia di far festa.</h5>
+    </div>
     <div class="banner-container">
       <div class="banner">
         <p>Stai cercando una band per il tuo matrimonio?Hai bisogno di un dj per la tua serata tra amici?Addirittura un
@@ -49,8 +50,14 @@ export default {
   padding-top: 10rem;
   color: #F6FB01;
 }
-.presentazione :first-of-type{
-  color: #FD129E
+#presentazione-cont{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.presentazione h1{
+color: #FD129E;
 }
 
 .jumbo {
@@ -96,9 +103,15 @@ export default {
 .banner {
   width: 30%;
   height: 14rem;
-  background-color: #ff6a00;
+  background-color:  #FD129E;
   margin: 2rem 0;
   padding: 1rem;
   border-radius: 0.6rem;
+}
+.banner p{
+color: #F6FB01;
+font-family: sans-serif;
+font-size: 1.2em;
+
 }
 </style>

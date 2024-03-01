@@ -38,7 +38,7 @@ export default {
 }
 
 #navbar img {
-  width: 10%;
+  width: 15%;
 }
 
 #navbar a {

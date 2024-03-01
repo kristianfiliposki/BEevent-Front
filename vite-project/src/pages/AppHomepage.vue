@@ -17,8 +17,8 @@ export default{
 <template>
 	<div id="welcome">
       <select name="" id="selettore">
-          <option value="">cacca</option>
-          <option value="">cacca</option>
+          <option value="">SELEZIONA PER SPECIALITA'</option>
+          <option value="">NON SO CHE ALTRO SCRIVERCI</option>
       </select>
 	</div>
   <Appcard/>
