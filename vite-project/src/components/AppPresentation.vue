@@ -8,6 +8,7 @@ export default {
 
 <template>
   <div class="presentazione">
+    <h1>Ti diamo il benvenuto su Heavy Planning!</h1>
     <h1>Organizzare un concerto non è mai stato cosi semplice</h1>
     <h3>Se vuoi dare vita ai tuoi eventi sei capitato nel posto giusto! </h3>
     <h5>Dal 2022 siamo parte della vita serale Romana e collaboriamo con artisti da tutto il mondo per metterli in
@@ -45,9 +46,11 @@ export default {
 </template>
 <style scoped>
 .presentazione {
-  background-color: rgb(0, 0, 0);
   padding-top: 10rem;
-  color: white
+  color: #F6FB01;
+}
+.presentazione :first-of-type{
+  color: #FD129E
 }
 
 .jumbo {
@@ -75,7 +78,7 @@ export default {
 }
 
 .centro-jumbo {
-  color: rgb(208, 83, 0);
+  color:#F6FB01;
   font-size: 5rem;
 }
 
