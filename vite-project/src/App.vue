@@ -19,7 +19,7 @@ export default {
     call() {
 
       axios.get("http://127.0.0.1:8000/api/dati").then(risultato => {
-        store.operators = risultato.data.operators,
+          store.operators = risultato.data.operators,
           store.messages = risultato.data.messages,
           store.votes = risultato.data.votes,
           store.sponsorships = risultato.data.sponsorships,

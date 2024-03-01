@@ -11,9 +11,9 @@ routes:[{
 
 },
 {
-        path:'/dashboard',
-        name:'dashboard',
-        component:AppDashboard
+    path:'/dashboard',
+    name:'dashboard',
+    component:AppDashboard
 }
 ]
 
