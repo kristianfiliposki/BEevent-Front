@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -12,7 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+body {
+  background-color: #555555;
+}
 a {
   font-weight: 500;
   color: #646cff;
@@ -76,4 +78,14 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+} */
+
+*{
+  box-sizing: border-box;
+  padding: 0%;
+  margin: 0%;
+  font-family: sans-serif;
+}
+body{
+  background-color: #294974;
 }
