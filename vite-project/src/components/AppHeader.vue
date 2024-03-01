@@ -24,7 +24,7 @@ export default {
 <style scoped>
 /* //navbar admin section */
 #navbar {
-  width: 100vw;
+  width: 100%;
   height: 20vh;
   background-color: #090021;
   display: flex;
