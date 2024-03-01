@@ -8,8 +8,8 @@ export default {
   <header id="navbar">
    
       <img src="/logo/Heavy planning logo.jpg" alt="img">
-      <a href="/"><i class="fa-solid fa-home-alt fa-lg fa-fw"></i> Home</a>
-      <a href=""><i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard</a>
+      <router-link to="/home">home</router-link>
+      <router-link to="/dashboard">dashboard</router-link>
       <a href=""><i class="fa-solid fa-plus fa-lg fa-fw"></i> Aggiungi operatore</a>
       <a href=""></a>
       <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
