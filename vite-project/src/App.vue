@@ -1,63 +1,65 @@
 <script >
 import { store } from './store.js';
 import axios from 'axios';
+import AppPresentation from "./components/AppPresentation.vue"
 
-export default{
-  components:{
+export default {
+  components: {
+    AppPresentation,
 
   },
-  data(){
-    return{
+  data() {
+    return {
       store,
 
     }
   },
 
-  methods:{
-         call(){
-          axios.get("http://127.0.0.1:8000/api/dati").then(risultato=>{
-            store.operators=risultato.data.operators,
-            store.messages=risultato.data.messages,
-            store.votes=risultato.data.votes,
-            store.sponsorships=risultato.data.sponsorships,
-            store.specializations=risultato.data.specializations,
-            store.operator_sponsorship=risultato.data.operator_sponsorship,
-            store.reviews=risultato.data.reviews;})
-        },
+  methods: {
+    call() {
+      axios.get("http://127.0.0.1:8000/api/dati").then(risultato => {
+        store.operators = risultato.data.operators,
+          store.messages = risultato.data.messages,
+          store.votes = risultato.data.votes,
+          store.sponsorships = risultato.data.sponsorships,
+          store.specializations = risultato.data.specializations,
+          store.operator_sponsorship = risultato.data.operator_sponsorship,
+          store.reviews = risultato.data.reviews;
+        store.dati = risultato.data
+      })
     },
-    mounted(){
-      this.call();
-    },
+  },
+  mounted() {
+    this.call();
+  },
 }
 
 </script>
 
 <template>
-  <div>
-    <h1>Organizzare un concerto non è mai stato cosi semplice</h1>
-    <div>
-      <p>scegli tra i nostri numerosissimi artisti:</p>
-      <ul>
-        <li v-for="dato in store.reviews">
-          {{ dato.comment }}
-        </li>
-      </ul>
+  <div class="navbar"></div>
+  <AppPresentation />
 
-    </div>
-  </div>  
+
+  <div class="container">
+    <p>scegli tra i nostri numerosissimi artisti:</p>
+
+
+    <ul>
+      <li v-for="dato in store.dati">
+        {{ dato }}
+      </li>
+    </ul>
+
+  </div>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.navbar {
+  height: 8em;
+  width: 100%;
+  background-color: #01a7aa;
+  position: fixed;
+
 }
 </style>
