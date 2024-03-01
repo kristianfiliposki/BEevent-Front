@@ -34,6 +34,7 @@ export default{
 <style scoped>
 
 #welcome{
+  margin-top:2em ;
   width: 100%;
   position: fixed;
   height: 10vh;

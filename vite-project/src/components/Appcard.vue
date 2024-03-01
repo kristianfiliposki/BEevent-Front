@@ -32,8 +32,7 @@ export default {
   justify-content: space-between;
 }
 #card-css{
-  height: 30%;
-  width: calc(100% / 4);
+  width: calc(100% / 3);
   background-color: rgb(165, 164, 164);
   border-radius: 15px;
   margin: 20% 5%;
@@ -48,6 +47,7 @@ export default {
 
 .img-operator{
   height: 100%;
+  width: 100%;
   object-fit: cover;
   object-position: center;
 }
