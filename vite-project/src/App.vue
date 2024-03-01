@@ -2,10 +2,12 @@
 import { store } from './store.js';
 import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
+import AppPresentation from './components/AppPresentation.vue';
 
 export default {
   components: {
-    AppHeader
+    AppHeader,
+    AppPresentation,
 
   },
   data() {
@@ -19,7 +21,7 @@ export default {
     call() {
 
       axios.get("http://127.0.0.1:8000/api/dati").then(risultato => {
-          store.operators = risultato.data.operators,
+        store.operators = risultato.data.operators,
           store.messages = risultato.data.messages,
           store.votes = risultato.data.votes,
           store.sponsorships = risultato.data.sponsorships,
@@ -36,10 +38,9 @@ export default {
 </script>
 
 <template>
-  <AppHeader/>
+  <AppHeader />
+  <AppPresentation />
   <router-view></router-view>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
