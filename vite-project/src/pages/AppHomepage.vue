@@ -16,20 +16,13 @@ export default{
 
 <template>
 	<div id="welcome">
-	  <h1>Ti diamo il benvenuto su Heavy Planning!</h1>
-	  <h2>il nostro sito di gestione ed organizzazione di eventi!</h2>
-    <div>
-
-      <p>Dai un'occhiata ad i nostri artisti!</p>
-  
       <select name="" id="selettore">
           <option value="">cacca</option>
           <option value="">cacca</option>
       </select>
-    </div>
-
 	</div>
   <Appcard/>
+  <router-view></router-view>
   </template>
 <style scoped>
 
