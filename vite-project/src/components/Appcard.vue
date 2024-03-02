@@ -12,7 +12,7 @@ export default {
     <section id="fakeBody" class="wrapper">
 	    <div id="card-css" v-for="dato in store.operators">
 		  <h3>{{ dato.name }}</h3>
-		  <img src="/public/img/cantante-1.jpeg" alt="img" class="img-operator">
+      <img :src="'/public/img/' + dato.image" alt="img" class="img-operator">
 		  <h4>{{ dato.description }}</h4>
 		  <h5>{{ dato.engagement_price }}</h5>
 		  <h5>{{ dato.phone }}</h5>
@@ -23,30 +23,32 @@ export default {
 
 
 #fakeBody{
-  width: 100%;
-  height: 60vh;
-  overflow-x: auto;
-  overflow-y: hidden;
-  display:flex;
-  align-items: center;
-  justify-content: space-between;
+  width: 100vw;
+    height: 60vh;
+    overflow-y: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 2em;
+    flex-direction: column;
 }
 #card-css{
-  width: calc(100% / 3);
-  background-color: rgb(165, 164, 164);
-  border-radius: 15px;
-  margin: 20% 5%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    width: calc((100% / 3) );
+    background-color: rgb(165, 164, 164);
+    border-radius: 15px;
+    margin: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 96%;
 }
 #card-css h3{
  border-bottom: 3px solid  rgb(143, 141, 141);
 }
 
 .img-operator{
-  height: 100%;
+  min-height: 75%;
   width: 100%;
   object-fit: cover;
   object-position: center;
