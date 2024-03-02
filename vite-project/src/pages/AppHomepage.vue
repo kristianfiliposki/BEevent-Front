@@ -10,7 +10,15 @@ export default{
         return{
           store,
         }
-    }
+    },
+    methods:{
+       ciao(){
+        console.log("troia");
+      }
+    },
+    mounted(){  
+        console.log("Componente Header caricato");
+    },
 }
 </script>
 
