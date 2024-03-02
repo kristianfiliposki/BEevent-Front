@@ -12,21 +12,35 @@ export default{
         }
     },
     methods:{
-       ciao(){
-        console.log("troia");
-      }
+       search(){
+        // Ottenere un array di elementi con lo stesso ref "myDiv"
+        let divElements = this.$refs.category;
+
+        // Ora puoi iterare attraverso gli elementi e fare qualcosa con ognuno di essi
+        if  (
+              store.operators.name.forEach(operator => {
+                operator==divElements.innerText
+              })
+            ){
+              console.log(
+                store.operators.name.forEach(operator => {
+                operator==divElements.innerText
+              })
+              )
+            };
     },
     mounted(){  
         console.log("Componente Header caricato");
     },
+  }
 }
 </script>
 
 <template>
 	<div id="welcome">
       <select name="" id="selettore">
-          <option value="">cacca</option>
-          <option value="">cacca</option>
+          <option value="" ref="category" @click="search()">Giulia Bianchi</option>
+          <option value="" ref="category" @click="search()">cacca</option>
       </select>
 	</div>
   <Appcard/>
