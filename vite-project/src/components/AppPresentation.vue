@@ -50,7 +50,8 @@ export default {
   color: #F6FB01;
 }
 .presentazione :first-of-type{
-  color: #FD129E
+  color: grey;
+  font-family: sans-serif;
 }
 
 .jumbo {
@@ -96,7 +97,8 @@ export default {
 .banner {
   width: 30%;
   height: 14rem;
-  background-color: #ff6a00;
+  background-color: white;
+  border: 1px solid black;
   margin: 2rem 0;
   padding: 1rem;
   border-radius: 0.6rem;
