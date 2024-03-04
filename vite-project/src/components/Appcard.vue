@@ -5,6 +5,7 @@ export default {
     return {
       store,
       specialization:"",
+      visible:true,
     }
   },
   methods: {
@@ -19,11 +20,39 @@ export default {
 
       return operatorSpecializations;
     },
+    filterSpec(){
+      let selector=this.$refs.selector;
+      let specializzatione=this.$refs.specializzatione;
+      /* se la specializzazione dell'operatore iclude il valore del selettore */
+      if (
+        specializzatione.innerText.include(selector.innerText)
+      ) 
+      /* allora... */
+      {
+        this.visible=true;
+      }
+      else{
+        this.visible=false;
+      }
+    
+      console.log(this.visible)
+      return this.visible;
+    }
+
   },
 }
 </script>
 <template>
-  <section id="fakeBody" class="wrapper">
+
+  <div id="welcome">
+    <select name="specializzazioni" id="selettore">
+      <option ref="selector" :value="dato.name" v-for="dato in store.specializations " @click="">{{ dato.name }}</option>
+    </select>
+  </div>
+
+
+
+  <section id="fakeBody" class="wrapper" ref="card" v-show="this.visible">
     <div class="card-css" v-for="operator in store.operators" :key="operator.id">
       <h3>{{ operator.name }}</h3>
       <img :src="'/public/img/' + operator.image" alt="img" class="img-operator">
@@ -33,7 +62,7 @@ export default {
 
       <!-- Trova la corrispondente specializzazione per l'operatore -->
       <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
-        <p>{{ operatorSpecialization.specialization.name }}</p>
+        <p ref="specializzazione">{{ operatorSpecialization.specialization.name }}</p>
       </div>
     </div>
   </section>
@@ -42,6 +71,26 @@ export default {
 
 </template>
 <style scoped>
+#welcome {
+  margin-top: 2em;
+  width: 100%;
+  position: fixed;
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+}
+
+#welcome h1 {
+  color: #FD129E;
+}
+
+#welcome h2 {
+  color: #F6FB01;
+}
+
 #fakeBody {
   width: 100vw;
   height: 60vh;
