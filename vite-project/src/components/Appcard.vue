@@ -8,6 +8,14 @@ export default {
       visible:true,
     }
   },
+  computed: {
+    filteredOperators() {
+      return this.store.operators.filter(operator => {
+        const operatorSpecializations = this.getOperatorSpecializations(operator.id);
+        return operatorSpecializations.some(os => os.specialization.name === this.selectedSpecialization);
+      });
+    },
+  },
   methods: {
     getOperatorSpecializations(operatorId) {
       // Filtra le specializzazioni corrispondenti all'operatore
@@ -45,8 +53,8 @@ export default {
 <template>
 
   <div id="welcome">
-    <select name="specializzazioni" id="selettore">
-      <option ref="selector" :value="dato.name" v-for="dato in store.specializations " @click="">{{ dato.name }}</option>
+    <select name="specializzazioni" id="selettore" v-model="selectedSpecialization">
+      <option :value="dato.name" v-for="dato in store.specializations" :key="dato.id" aria-placeholder="ok">{{ dato.name }}</option>
     </select>
   </div>
 
