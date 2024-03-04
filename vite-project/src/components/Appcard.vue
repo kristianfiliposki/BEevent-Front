@@ -17,9 +17,7 @@ export default {
 <template>
   <section id="fakeBody" class="wrapper">
     <div class="card-css" v-for="dato in store.operators">
-      <div>
-        <p>{{ dato. }}</p>
-      </div>
+
       <h3>{{ dato.name }}</h3>
       <img :src="'/public/img/' + dato.image" alt="img" class="img-operator">
       <h4>{{ dato.description }}</h4>
