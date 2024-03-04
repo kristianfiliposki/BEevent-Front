@@ -8,6 +8,6 @@ export const store = reactive({
     sponsorships: [], // correggo sponshorships
     votes: [],
     operator_sponsorships: [], // correggo operator_sponshorships
-    operator_specializations: [],
+    operator_specializations: [],/* tabella ponte */
     images: [{}], // E' meglio specificare le immagini qui
 })
