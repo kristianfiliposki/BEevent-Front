@@ -1,33 +1,35 @@
 <script>
 import { store } from '../store';
 import Appcard from '../components/Appcard.vue';
-export default{
-    name: "AppHomepage",
-    components: { 
-      Appcard,
-     },
-    data(){
-        return{
-          store,
-        }
+import AppPresentation from '../components/AppPresentation.vue';
+export default {
+  name: "AppHomepage",
+  components: {
+    Appcard,
+    AppPresentation,
+  },
+  data() {
+    return {
+      store,
     }
+  }
 }
 </script>
 
 <template>
-	<div id="welcome">
-      <select name="" id="selettore">
-          <option value="">cacca</option>
-          <option value="">cacca</option>
-      </select>
-	</div>
-  <Appcard/>
+  <AppPresentation />
+  <div id="welcome">
+    <select name="" id="selettore">
+      <option value="">cacca</option>
+      <option value="">cacca</option>
+    </select>
+  </div>
+  <Appcard />
   <router-view></router-view>
-  </template>
+</template>
 <style scoped>
-
-#welcome{
-  margin-top:2em ;
+#welcome {
+  margin-top: 2em;
   width: 100%;
   position: fixed;
   height: 10vh;
@@ -37,11 +39,12 @@ export default{
   justify-content: center;
   position: sticky;
 }
-#welcome h1{
+
+#welcome h1 {
   color: #FD129E;
 }
-#welcome h2{
+
+#welcome h2 {
   color: #F6FB01;
 }
-
 </style>
