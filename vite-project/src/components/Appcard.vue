@@ -4,18 +4,21 @@ export default {
   data() {
     return {
       store,
+      specialization:"",
     }
   },
-  methods:{
-    specializations(){},
+  computed:{
+    check(){
+      
+    },
   },
 }
 </script>
 <template>
   <section id="fakeBody" class="wrapper">
     <div class="card-css" v-for="dato in store.operators">
-      <div v-for="specializzazione in store.specializations">
-        <p>{{ specializzazione.name }}</p>
+      <div>
+        <p>{{ dato. }}</p>
       </div>
       <h3>{{ dato.name }}</h3>
       <img :src="'/public/img/' + dato.image" alt="img" class="img-operator">
