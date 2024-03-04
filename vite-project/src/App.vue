@@ -26,7 +26,7 @@ export default {
           store.votes = risultato.data.votes,
           store.sponsorships = risultato.data.sponsorships,
           store.specializations = risultato.data.specializations,
-          store.operator_sponsorship = risultato.data.operator_sponsorship,
+          store.operator_sponsorships = risultato.data.operator_sponsorships,
           store.reviews = risultato.data.reviews;
       })
     },
