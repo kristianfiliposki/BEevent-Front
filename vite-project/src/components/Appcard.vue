@@ -4,9 +4,8 @@ export default {
   data() {
     return {
       store,
-      specialization:"",
-      visible:true,
-    }
+      selectedSpecialization: '',
+    };
   },
   computed: {
     filteredOperators() {
@@ -18,50 +17,34 @@ export default {
   },
   methods: {
     getOperatorSpecializations(operatorId) {
-      // Filtra le specializzazioni corrispondenti all'operatore
-      const operatorSpecializations = this.store.operator_specializations
+      return this.store.operator_specializations
         .filter(os => os.operator_id === operatorId)
         .map(os => ({
           id: os.specialization_id,
           specialization: this.store.specializations.find(s => s.id === os.specialization_id),
         }));
-
-      return operatorSpecializations;
     },
-    filterSpec(){
-      let selector=this.$refs.selector;
-      let specializzatione=this.$refs.specializzatione;
-      /* se la specializzazione dell'operatore iclude il valore del selettore */
-      if (
-        specializzatione.innerText.include(selector.innerText)
-      ) 
-      /* allora... */
-      {
-        this.visible=true;
-      }
-      else{
-        this.visible=false;
-      }
-    
-      console.log(this.visible)
-      return this.visible;
-    }
-
+    filterSpec() {
+      // Chiamato quando la selezione cambia
+      // Puoi gestire l'aggiornamento qui se necessario
+      console.log('Selezione cambiata:', this.selectedSpecialization);
+    },
   },
-}
+};
 </script>
-<template>
 
+<template>
   <div id="welcome">
+    <label for="selettore" class="bebas-neue-regular">Seleziona una specializzazione:</label>
+    <!-- Utilizza v-model per collegare direttamente la select a selectedSpecialization -->
     <select name="specializzazioni" id="selettore" v-model="selectedSpecialization">
-      <option :value="dato.name" v-for="dato in store.specializations" :key="dato.id" aria-placeholder="ok">{{ dato.name }}</option>
+      <option :value="dato.name" v-for="dato in store.specializations" :key="dato.id">{{ dato.name }}</option>
     </select>
   </div>
 
-
-
-  <section id="fakeBody" class="wrapper" ref="card" v-show="this.visible">
-    <div class="card-css" v-for="operator in store.operators" :key="operator.id">
+  <section id="fakeBody" class="wrapper" ref="card">
+    <!-- Utilizza filteredOperators solo quando è stata selezionata una specializzazione -->
+    <div class="card-css" v-for="operator in (selectedSpecialization ? filteredOperators : store.operators)" :key="operator.id">
       <h3>{{ operator.name }}</h3>
       <img :src="'/public/img/' + operator.image" alt="img" class="img-operator">
       <h4>{{ operator.description }}</h4>
@@ -70,26 +53,31 @@ export default {
 
       <!-- Trova la corrispondente specializzazione per l'operatore -->
       <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
-        <p ref="specializzazione">{{ operatorSpecialization.specialization.name }}</p>
+        <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
       </div>
     </div>
   </section>
-
-
-
 </template>
+
 <style scoped>
 #welcome {
   margin-top: 2em;
   width: 100%;
-  position: fixed;
   height: 10vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: sticky;
+  color: white;
+  font-size: 1.2em;
 }
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0.6em;
+}
+
 
 #welcome h1 {
   color: #FD129E;
