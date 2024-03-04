@@ -4,14 +4,22 @@ export default {
   data() {
     return {
       store,
+      specialization:"",
     }
+  },
+  computed:{
+    check(){
+      
+    },
   },
 }
 </script>
 <template>
-  <p>{{ store.operator_sponsorships }}</p>
   <section id="fakeBody" class="wrapper">
-    <div id="card-css" v-for="dato in store.operators">
+    <div class="card-css" v-for="dato in store.operators">
+      <div>
+        <p>{{ dato. }}</p>
+      </div>
       <h3>{{ dato.name }}</h3>
       <img :src="'/public/img/' + dato.image" alt="img" class="img-operator">
       <h4>{{ dato.description }}</h4>
@@ -19,6 +27,8 @@ export default {
       <h5>{{ dato.phone }}</h5>
     </div>
   </section>
+
+
 </template>
 <style scoped>
 #fakeBody {
@@ -32,7 +42,7 @@ export default {
   flex-direction: column;
 }
 
-#card-css {
+.card-css {
   width: calc((100% / 3));
   background-color: rgb(165, 164, 164);
   border-radius: 15px;
