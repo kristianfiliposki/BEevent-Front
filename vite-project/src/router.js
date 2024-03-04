@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import AppHomepage from './pages/AppHomepage.vue';
 import AppDashboard from './pages/AppDashboard.vue';
 import AppRicerca from './pages/AppRicerca.vue';
+import AppDetail from './pages/App.Detail.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -20,6 +21,12 @@ const router = createRouter({
         path: '/ricerca',
         name: 'ricerca',
         component: AppRicerca
+    },
+    {
+    path:'/id',
+    name: 'detail',
+    component: AppDetail,
+    props: true
     }
     ]
 
