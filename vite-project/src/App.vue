@@ -39,7 +39,7 @@ export default {
 
 <template>
   <AppHeader />
-  <AppPresentation />
+
   <router-view></router-view>
 </template>
 
