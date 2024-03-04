@@ -7,24 +7,37 @@ export default {
       specialization:"",
     }
   },
-  computed:{
-    check(){
-      
+  methods: {
+    getOperatorSpecializations(operatorId) {
+      // Filtra le specializzazioni corrispondenti all'operatore
+      const operatorSpecializations = this.store.operator_specializations
+        .filter(os => os.operator_id === operatorId)
+        .map(os => ({
+          id: os.specialization_id,
+          specialization: this.store.specializations.find(s => s.id === os.specialization_id),
+        }));
+
+      return operatorSpecializations;
     },
   },
 }
 </script>
 <template>
   <section id="fakeBody" class="wrapper">
-    <div class="card-css" v-for="dato in store.operators">
+    <div class="card-css" v-for="operator in store.operators" :key="operator.id">
+      <h3>{{ operator.name }}</h3>
+      <img :src="'/public/img/' + operator.image" alt="img" class="img-operator">
+      <h4>{{ operator.description }}</h4>
+      <h5>{{ operator.engagement_price }}</h5>
+      <h5>{{ operator.phone }}</h5>
 
-      <h3>{{ dato.name }}</h3>
-      <img :src="'/public/img/' + dato.image" alt="img" class="img-operator">
-      <h4>{{ dato.description }}</h4>
-      <h5>{{ dato.engagement_price }}</h5>
-      <h5>{{ dato.phone }}</h5>
+      <!-- Trova la corrispondente specializzazione per l'operatore -->
+      <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
+        <p>{{ operatorSpecialization.specialization.name }}</p>
+      </div>
     </div>
   </section>
+
 
 
 </template>
