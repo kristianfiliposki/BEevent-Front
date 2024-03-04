@@ -11,18 +11,24 @@ export default {
   data() {
     return {
       store,
+      filterSpec : ''
     }
-  }
-}
+  },
+  computed: {
+    filteredSpecs(){
+    let operators = this.store.operators;
+    if (this.filterSpec){
+      operators = operators.filter(operator => operator.specializations.search().includes(this.filterSpec.search()));
+      return operators;
+    }
+  }}}
+
 </script>
 
 <template>
   <AppPresentation />
   <div id="welcome">
-    <select name="" id="selettore">
-      <option value="">cacca</option>
-      <option value="">cacca</option>
-    </select>
+     <input class="inputName" type="text" v-model="filterSpec" placeholder="Cerca per specializzazione">
   </div>
   <Appcard />
   <router-view></router-view>
