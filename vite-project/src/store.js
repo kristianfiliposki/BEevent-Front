@@ -9,6 +9,8 @@ export const store = reactive({
             sponshorships: [],
             votes: [],
             operator_sponshorships: [],
+            operator_specializations: [],
+
             images: [
                 {
 
