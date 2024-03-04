@@ -6,21 +6,21 @@ export default {
 
 <template>
   <header id="navbar">
-   
+
     <router-link to="/home">
-        <img src="/logo/Heavy planning logo.jpg" alt="img">
+      <img src="/logo/Heavy planning logo.jpg" alt="img">
     </router-link>
     <!--       <router-link to="/dashboard">dashboard</router-link>
-     -->    
-      <router-link to="/dashboard">dashboard</router-link>  
-      <a href="/home">ricerca</a>
-      <a href=""><i class="fa-solid fa-plus fa-lg fa-fw"></i> Aggiungi operatore</a>
-      <a href=""></a>
-      <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        <i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i>
-      </a>
-      <form id="logout-form" action="" method="POST" class="d-none"></form>
-  
+       -->
+    <router-link to="/dashboard">dashboard</router-link>
+    <a href="/home">Homepage</a>
+    <a href=""><i class="fa-solid fa-plus fa-lg fa-fw"></i> Aggiungi operatore</a>
+    <a href="/ricerca">ricerca avanzata</a>
+    <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+      <i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i>
+    </a>
+    <form id="logout-form" action="" method="POST" class="d-none"></form>
+
 
   </header>
 </template>
@@ -32,7 +32,7 @@ export default {
   height: 20vh;
   background-color: #090021;
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: space-between;
 
 }
@@ -48,7 +48,8 @@ export default {
   margin: 3% 1% 1% 0%;
   font-size: 1.5em;
 }
-#navbar a:hover{
+
+#navbar a:hover {
   color: #F6FB01;
   transition: 250ms;
 }
@@ -56,5 +57,4 @@ export default {
 #navbar i {
   color: #FD129E;
 }
-
 </style>
