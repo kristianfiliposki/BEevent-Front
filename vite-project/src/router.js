@@ -21,7 +21,13 @@ const router = createRouter({
         path: '/ricerca',
         name: 'ricerca',
         component: AppRicerca
-    }
+    },
+    {
+        path:'/detail/:id',
+        name: 'detail',
+        component: AppDetail,
+        props: true
+        }
     ]
 
 
