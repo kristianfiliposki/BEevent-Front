@@ -159,7 +159,7 @@ export default {
 
 .card-css {
   width: calc((100% / 3));
-  background-color: rgb(165, 164, 164);
+  background-color: rgba(0, 0, 0, 0.121);
   border-radius: 15px;
   margin: 9px;
   display: flex;
@@ -170,7 +170,7 @@ export default {
 }
 
 #card-css h3 {
-  border-bottom: 3px solid rgb(143, 141, 141);
+  border-bottom: 3px solid rgb(0, 0, 0,);
 }
 
 .img-operator {
@@ -187,7 +187,7 @@ export default {
 
 .card-css2 {
   width: 20%;
-  background-color: rgb(165, 164, 164);
+  background-color: rgba(0, 0, 0, 0.121);
   border-radius: 15px;
   margin: 9px;
   height: 20rem;
