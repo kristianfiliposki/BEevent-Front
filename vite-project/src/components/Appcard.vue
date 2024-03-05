@@ -23,12 +23,6 @@ export default {
       <h4>{{ dato.description }}</h4>
       <h5>{{ dato.engagement_price }}</h5>
       <h5>{{ dato.phone }}</h5>
-
-      <router-link :to="{
-                name: 'detail', params: { id: dato.id }
-            }">
-                <p>dettaglio</p>
-      </router-link>
     </div>
   </section>
 
