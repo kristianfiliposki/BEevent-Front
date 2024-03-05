@@ -35,7 +35,9 @@ export default {
 </script>
 
 <template>
-<h4>ciao</h4>
+<div v-for="dato in store.operator_specializations">
+<h1>{{ dato.operator_id }}</h1>
+</div>
 
 </template>
 
