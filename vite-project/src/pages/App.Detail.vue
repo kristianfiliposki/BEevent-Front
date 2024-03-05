@@ -1,37 +1,41 @@
 <script>
-import {store} from '../store';
 import axios from "axios";
+import { store } from "../store.js"; // Importa il file store.js
 
-export default{
-name: "AppDetail",
-props:["operators"],
-data (){
-return {
-    store,
-    event :null
-}
-},
-mounted(){
- this.event = this.store.operators.find(item => item.id == this.id);
-console.log(this.event);
-this.getEventId();},
-methods : {
-    getEventId(){
-        let url = this.store.
+export default {
+  name: "Detail",
+  props: ["id"],
+  data() {
+    return {
+      detail: null,
+      store // Aggiungi store come dato del componente
+    };
+  },
+  mounted() {
+    this.getDetail();
+  },
+  methods: {
+    getDetail() {
+      let url = this.store.apiUrl + "/" + this.operator_specializations.operator_id; // Utilizza l'URL dallo store
+
+      axios.get(url)
+        .then(response => {
+          if (response.status === 200 && response.data.success) {
+            this.event = response.data.payload;
+          } else {
+            console.error("Errore nella richiesta dei dettagli dell'utente.");
+          }
+        })
+        .catch(error => {
+          console.error("Errore nella richiesta:", error);
+        });
     }
-}
-
-
-
-
-}
-
-
-
+  }
+};
 </script>
 
 <template>
-
+<h4>ciao</h4>
 
 </template>
 
