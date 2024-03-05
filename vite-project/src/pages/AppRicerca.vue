@@ -98,7 +98,7 @@ export default {
 }
 
 .filterWrap {
-    background-color: aqua;
+    background-color: #090021;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -109,6 +109,9 @@ export default {
     width: 15%;
     height: 3rem;
 
+}
+.inputDiv h4{
+    color:  #FD129E;
 }
 
 .inputNum {
