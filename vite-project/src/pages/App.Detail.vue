@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     getDetail() {
-      let url = this.store.apiUrl + "/" + this.operator_specializations.operator_id; 
+      let url = this.store.apiUrl + "/" + this.operator_specializations; 
 
       axios.get(url)
         .then(response => {
@@ -49,7 +49,7 @@ export default {
 <p>{{ dato.specialization_id }}</p>
 </div>
 
-<div v-if="detail.operator">
+<!-- <div v-if="detail.operator">
   <h2>Operatore:</h2>
   <p>Nome: {{ detail.operator.name }}</p>
   <p>Email: {{ event.operator.email }}</p>
@@ -58,7 +58,7 @@ export default {
 <div v-if="detail.specialization">
   <h2>Specializzazione:</h2>
   <p>Nome: {{ detail.specialization.name }}</p>
-</div>
+</div> -->
 
 
 
