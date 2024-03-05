@@ -1,68 +1,31 @@
 <script>
-import axios from "axios";
-import { store } from "../store.js";
+import { store } from '../store.js';
+import { computed } from 'vue';
+
 export default {
-  name: "Detail",
-  props: ["id"],
+  name: 'AppDetail',
   data() {
     return {
-      detail: null,
-      store 
+      store,
     };
   },
-  mounted() {
-    this.getDetail();
+  computed: {
+    operator() {
+      const operatorId = parseInt(this.$route.params.id); // Ottieni l'ID dell'operatore dall'URL
+      return this.store.operators.find(operator => operator.id === operatorId); // Trova l'operatore corrispondente nell'array degli operatori
+    },
   },
-  methods: {
-    getDetail() {
-      let url = this.store.apiUrl + "/" + this.operator_specializations; 
-
-      axios.get(url)
-        .then(response => {
-          if (response.status === 200 && response.data.success) {
-            this.detail = response.data.payload;
-
-           
-          const operatorID = this.detail.operator_id;
-          this.detail.operator = this.store.operators.find(operator => operator.id === operatorID);
-
-         
-          const specializationID = this.detail.specialization_id;
-
-
-          this.detail.specialization = this.store.specializations.find(specialization => specialization.id === specializationID);
-          } else {
-            console.error("Errore nella richiesta dei dettagli dell'utente.");
-          }
-        })
-        .catch(error => {
-          console.error("Errore nella richiesta:", error);
-        });
-    }
-  }
 };
 </script>
-
 <template>
-<div v-for="dato in store.operator_specializations">
-<h1>{{ dato.operator_id }}</h1>
-<p>{{ dato.specialization_id }}</p>
-</div>
+<div v-if="operator">
+    <h2>Dettagli di {{ operator.name }}</h2>
+    <h3>Descrizione: {{ operator.description }}</h3>
+    <h4>Prezzo di ingaggio : {{ operator.engagement_price }}</h4>
 
-<!-- <div v-if="detail.operator">
-  <h2>Operatore:</h2>
-  <p>Nome: {{ detail.operator.name }}</p>
-  <p>Email: {{ event.operator.email }}</p>
-</div>
-
-<div v-if="detail.specialization">
-  <h2>Specializzazione:</h2>
-  <p>Nome: {{ detail.specialization.name }}</p>
-</div> -->
-
-
-
+  </div>
 </template>
+
 
 
 <style scoped>

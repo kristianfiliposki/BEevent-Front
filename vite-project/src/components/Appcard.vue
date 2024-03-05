@@ -1,6 +1,7 @@
 <script>
 import { store } from '../store';
 import moment from 'moment';
+import { useRouter } from 'vue-router';
 
 export default {
   data() {
@@ -50,6 +51,10 @@ export default {
       console.log(`Sponsorizzazione ${sponsorship.id} è scaduta: ${!isExpired}`);
       return isExpired;
     },
+    viewOperatorDetails(operatorID) {
+      const router = useRouter();
+      router.push({ name: 'detail', params: { id: operatorID} }); // Reindirizza alla pagina dei dettagli dell'operatore con l'ID come parametro
+    }
   },
 };
 </script>
@@ -99,6 +104,15 @@ export default {
         <h4>{{ operator.description }}</h4>
         <h5>{{ operator.engagement_price }}</h5>
         <h5>{{ operator.phone }}</h5>
+        <div class="card-css":key="operator.id">
+      <!-- Altri contenuti della card... -->
+            <router-link :to="{
+                name: 'detail', params: { id: operator.id }
+            }">
+                <p>dettaglio</p>
+            </router-link>
+        </div>
+        
 
         <!-- Trova la corrispondente specializzazione per l'operatore -->
         <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
@@ -170,7 +184,7 @@ export default {
 }
 
 #card-css h3 {
-  border-bottom: 3px solid rgb(0, 0, 0,);
+  border-bottom: 3px solid rgb(0, 0, 0, );
 }
 
 .img-operator {
