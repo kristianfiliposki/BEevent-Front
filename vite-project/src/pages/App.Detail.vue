@@ -55,10 +55,13 @@ export default {
   </div>
 
 <div class="textareacontainer">
-  <div v-if="showTextarea">
-    <textarea class="text" rows="4" cols="50" placeholder="Scrivi il tuo messaggio qui..."></textarea>
-    <button class="btn">Invia</button>
-  </div>
+  <form action="http://127.0.0.1:8000/message" method="GET">
+    <input name="operator_id" type="hidden" v-model="operator.id">
+    <textarea class="text" name="text" cols="50" rows="4" placeholder="Scrivi il tuo messaggio qui..."></textarea>
+    <input name="user_email" type="email" placeholder="Inserisci la tua email">
+    <input name="author" type="text" placeholder="Inserisci il tuo nome">
+    <input type="submit" value="Invia">
+  </form>
   <div v-if="showTextarea2">
     <textarea class="text2" rows="4" cols="50" placeholder="Scrivi la tua recensione qui..."></textarea>
     <button class="btn">Invia</button>
