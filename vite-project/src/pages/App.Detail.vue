@@ -7,7 +7,17 @@ export default {
   data() {
     return {
       store,
+      showTextarea: false,
+      showTextarea2: false
     };
+  },
+  methods: {
+    createTextarea: function() {
+      this.showTextarea = true;
+    },
+    createTextarea2: function() {
+      this.showTextarea2 = true;
+    }
   },
   computed: {
     operator() {
@@ -31,14 +41,24 @@ export default {
 
   </div>
   <div class="btnCont">
-    <button class="btn">
+    <button class="btn" @click="createTextarea">
       <H3>CONTATTA</H3>
     </button>
 
-    <button class="btn">
-      <H3>DAI UN VOTO</H3>
+    <button class="btn" @click="createTextarea2">
+      <H3>SCRIVI UNA RECENSIONE</H3>
     </button>
   </div>
+
+<div class="textareacontainer">
+  <div v-if="showTextarea">
+    <textarea class="text" rows="4" cols="50" placeholder="Scrivi il tuo messaggio qui..."></textarea>
+  </div>
+  <div v-if="showTextarea2">
+    <textarea class="text2" rows="4" cols="50" placeholder="Scrivi il tuo messaggio qui..."></textarea>
+  </div>
+</div>
+
 </template>
 
 
@@ -57,7 +77,7 @@ export default {
 .card {
   background-color: rgba(0, 0, 0, 0.121);
   padding: 2% 2% 2% 2%;
-  
+
 }
 
 .btnCont {
@@ -103,4 +123,35 @@ export default {
 .btn:active {
   background-color: #3e8e41;
 }
+.text{
+  width:32rem;
+  height:15rem;
+  margin-left: 5%;
+  border: 1px solid  rgba(255, 255, 255, 0.582);
+  background-color: rgba(255, 255, 255, 0.582) ;
+}
+textarea{
+  border-radius: 0,6rem;
+
+}
+.text2{
+  width:32rem;
+  height:15rem;
+  margin-left: 5%;
+  border: 1px solid  rgba(255, 255, 255, 0.582);
+  background-color: rgba(255, 255, 255, 0.582) ;
+}
+textarea{
+  border-radius: 0.6rem;
+
+}
+.textareacontainer{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+
+
 </style>
