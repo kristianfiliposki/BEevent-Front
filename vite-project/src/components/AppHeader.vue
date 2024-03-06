@@ -12,7 +12,7 @@ export default {
     </router-link>
     <!--       <router-link to="/dashboard">dashboard</router-link>
        -->
-    <router-link to="/dashboard">dashboard</router-link>
+       <a href="http://localhost:8000/register">Registrati/log in</a>
     <a href="/">Homepage</a>
     <a href=""><i class="fa-solid fa-plus fa-lg fa-fw"></i> Aggiungi operatore</a>
     <a href="/ricerca">ricerca avanzata</a>

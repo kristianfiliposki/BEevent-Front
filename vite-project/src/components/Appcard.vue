@@ -174,7 +174,7 @@ export default {
         <router-link :to="{
           name: 'detail', params: { id: operator.id }
         }">
-          <p>Dettaglio</p>
+          <p>dettaglio</p>
         </router-link>
       </div>
     </div>
