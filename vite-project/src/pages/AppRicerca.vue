@@ -17,13 +17,13 @@ export default {
             selectedSpecialization: this.specialization || null,
         };
     },
-        created() {
-      // Quando il componente viene creato, puoi applicare il filtro
-      this.filterName = ''; // Puoi anche impostare i filtri in base alla tua logica
-      this.filterMinPrice = null;
-      this.filterMaxPrice = null;
-      this.filterMinRating = null;
-      // ... altre inizializzazioni
+    created() {
+        // Quando il componente viene creato, puoi applicare il filtro
+        this.filterName = ''; // Puoi anche impostare i filtri in base alla tua logica
+        this.filterMinPrice = null;
+        this.filterMaxPrice = null;
+        this.filterMinRating = null;
+        // ... altre inizializzazioni
     },
     computed: {
         filteredOperators() {
@@ -50,11 +50,11 @@ export default {
 
 
             if (this.specialization) {
-            operators = operators.filter(operator => {
-                const operatorSpecializations = this.getOperatorSpecializations(operator.id);
-                return operatorSpecializations.some(os => os.specialization.name === this.specialization);
-            });
-        }
+                operators = operators.filter(operator => {
+                    const operatorSpecializations = this.getOperatorSpecializations(operator.id);
+                    return operatorSpecializations.some(os => os.specialization.name === this.specialization);
+                });
+            }
 
             return operators;
         },
@@ -86,20 +86,20 @@ export default {
                 }));
         },
         redirectToFilteredOperators() {
-          if (this.selectedSpecialization) {
-            const filteredOperators = this.filteredOperators.map(operator => operator.id);
+            if (this.selectedSpecialization) {
+                const filteredOperators = this.filteredOperators.map(operator => operator.id);
 
-            this.$router.push({
-              name: 'ricerca',
-              query: {
-                specialization: this.selectedSpecialization,
-                operators: filteredOperators.join(','),
-              },
-            });
-          }
+                this.$router.push({
+                    name: 'ricerca',
+                    query: {
+                        specialization: this.selectedSpecialization,
+                        operators: filteredOperators.join(','),
+                    },
+                });
+            }
         },
     },
-    
+
 };
 </script>
 
@@ -127,36 +127,40 @@ export default {
 
             <!-- Input select pre-selezionato con la specializzazione ricevuta come prop -->
             <div id="welcome">
-              <label for="selettore" class="bebas-neue-regular">Seleziona il tuo specialista:</label>
-              <select name="specializzazioni" id="selettore" v-model="selectedSpecialization" @change="redirectToFilteredOperators">
-                <option :value="null" disabled>Seleziona una specializzazione</option>
-                <option :value="dato.name" v-for="dato in store.specializations" :key="dato.id">
-                  {{ dato.name }}
-                </option>
-              </select>
+                <label for="selettore" class="bebas-neue-regular">Seleziona il tuo specialista:</label>
+                <select name="specializzazioni" id="selettore" v-model="selectedSpecialization"
+                    @change="redirectToFilteredOperators">
+                    <option :value="null" disabled>Seleziona una specializzazione</option>
+                    <option :value="dato.name" v-for="dato in store.specializations" :key="dato.id">
+                        {{ dato.name }}
+                    </option>
+                </select>
             </div>
         </div>
     </div>
-    
+
 
 
 
 
     <!-- Carosello per tutti gli operatori -->
     <section id="fakeBody" class="wrapper" ref="allOperators">
-      <div class="card-css" v-for="operator in filteredOperators" :key="operator.id">
-        <!-- ... Existing card content ... -->
-        <h3>{{ operator.name }}</h3>
-        <img :src="'/public/img/' + operator.image" alt="img" class="img-operator">
-        <h4>{{ operator.description }}</h4>
-        <h5>{{ operator.engagement_price }}</h5>
-        <h5>{{ operator.phone }}</h5>
-        <router-link :to="{
-            name: 'detail', params: { id: operator.id }
-          }">
-            <p>dettaglio</p>
-          </router-link>
-      </div>
+        <div class="card-css" v-for="operator in filteredOperators" :key="operator.id">
+            <!-- ... Existing card content ... -->
+            <h3>{{ operator.name }}</h3>
+            <img :src="'/public/img/' + operator.image" alt="img" class="img-operator">
+            <h4>{{ operator.description }}</h4>
+            <h5>{{ operator.engagement_price }}</h5>
+            <h5>{{ operator.phone }}</h5>
+
+            <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
+
+            <router-link :to="{
+                name: 'detail', params: { id: operator.id }
+            }">
+                <p>dettaglio</p>
+            </router-link>
+        </div>
     </section>
 </template>
   
@@ -164,30 +168,30 @@ export default {
   
 <style scoped>
 #welcome {
-  margin-top: 2em;
-  width: 100%;
-  height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: sticky;
-  color: white;
-  font-size: 1.2em;
+    margin-top: 2em;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    color: white;
+    font-size: 1.2em;
 }
 
 .bebas-neue-regular {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  margin: 0.6em;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0.6em;
 }
 
 #welcome h1 {
-  color: #FD129E;
+    color: #FD129E;
 }
 
 #welcome h2 {
-  color: #F6FB01;
+    color: #F6FB01;
 }
 
 #fakeBody {
@@ -202,16 +206,17 @@ export default {
 }
 
 .card-css {
-  width: calc((100% / 3));
-  background-color: rgb(165, 164, 164);
-  border-radius: 15px;
-  margin: 9px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 96%;
+    width: calc((100% / 3));
+    background-color: rgb(165, 164, 164);
+    border-radius: 15px;
+    margin: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 96%;
 }
+
 #card-css h3 {
     border-bottom: 3px solid rgb(143, 141, 141);
 }
@@ -275,30 +280,30 @@ export default {
 .inputRange::-moz-range-thumb {
     transform: translateY(-25%);
 }
+
 .img-operator {
-  min-height: 75%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
+    min-height: 75%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .wrapper {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .card-css2 {
-  width: 20%;
-  background-color: rgb(165, 164, 164);
-  border-radius: 15px;
-  margin: 9px;
-  height: 20rem;
+    width: 20%;
+    background-color: rgb(165, 164, 164);
+    border-radius: 15px;
+    margin: 9px;
+    height: 20rem;
 }
 
 .img-operatorS {
 
-  width: 30%;
-  object-fit: cover;
-  object-position: center;
-}
-</style>
+    width: 30%;
+    object-fit: cover;
+    object-position: center;
+}</style>
