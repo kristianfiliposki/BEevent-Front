@@ -17,6 +17,26 @@ export default {
         return operatorSpecializations.some(os => os.specialization.name === this.selectedSpecialization);
       });
     },
+    operatorReviews() {
+      const operatorReviews = {};
+      this.store.reviews.forEach(review => {
+        if (!operatorReviews[review.operator_id]) {
+          operatorReviews[review.operator_id] = [];
+        }
+        operatorReviews[review.operator_id].push(review.vote_id);
+      });
+      return operatorReviews;
+    },
+    operatorAverageRatings() {
+      const averageRatings = {};
+      Object.keys(this.operatorReviews).forEach(operatorId => {
+        const ratings = this.operatorReviews[operatorId];
+        const sum = ratings.reduce((acc, rating) => acc + rating, 0);
+        const average = sum / ratings.length;
+        averageRatings[operatorId] = average.toFixed(2); // Arrotonda la media a 2 decimali
+      });
+      return averageRatings;
+    },
     operatorsWithActiveSponsorships() {
       return this.store.operators.filter(operator => {
         return this.isOperatorSponsored(operator.id) &&
@@ -53,7 +73,7 @@ export default {
     },
     viewOperatorDetails(operatorID) {
       const router = useRouter();
-      router.push({ name: 'detail', params: { id: operatorID} }); // Reindirizza alla pagina dei dettagli dell'operatore con l'ID come parametro
+      router.push({ name: 'detail', params: { id: operatorID } }); // Reindirizza alla pagina dei dettagli dell'operatore con l'ID come parametro
     }
   },
 };
@@ -71,6 +91,8 @@ export default {
         <h4>{{ operator.description }}</h4>
         <h5>{{ operator.engagement_price }}</h5>
         <h5>{{ operator.phone }}</h5>
+
+        <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
 
         <!-- Trova la corrispondente specializzazione per l'operatore -->
         <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
@@ -104,15 +126,18 @@ export default {
         <h4>{{ operator.description }}</h4>
         <h5>{{ operator.engagement_price }}</h5>
         <h5>{{ operator.phone }}</h5>
-        <div class="card-css":key="operator.id">
-      <!-- Altri contenuti della card... -->
-            <router-link :to="{
-                name: 'detail', params: { id: operator.id }
-            }">
-                <p>dettaglio</p>
-            </router-link>
+
+        <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
+
+        <div class="card-css" :key="operator.id">
+          <!-- Altri contenuti della card... -->
+          <router-link :to="{
+            name: 'detail', params: { id: operator.id }
+          }">
+            <p>dettaglio</p>
+          </router-link>
         </div>
-        
+
 
         <!-- Trova la corrispondente specializzazione per l'operatore -->
         <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
