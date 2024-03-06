@@ -10,15 +10,13 @@ export default {
     <router-link to="/">
       <img src="/logo/Heavy planning logo.jpg" alt="img">
     </router-link>
-    <!--       <router-link to="/dashboard">dashboard</router-link>
-       -->
-       <a href="http://localhost:8000/register">Registrati/log in</a>
-    <a href="/">Homepage</a>
+    <a href="http://localhost:8000/register">Registrati/log in</a>
     <a href=""><i class="fa-solid fa-plus fa-lg fa-fw"></i> Aggiungi operatore</a>
     <a href="/ricerca">ricerca avanzata</a>
     <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-      <i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i>
+     <i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i>
     </a>
+    <a href="/">Homepage</a>
     <form id="logout-form" action="" method="POST" class="d-none"></form>
 
 
@@ -45,7 +43,7 @@ export default {
   font-family: sans-serif;
   color: #FD129E;
   text-decoration: none;
-  margin: 3% 1% 1% 0%;
+  margin: 1% 1% 1% 0%;
   font-size: 1.5em;
 }
 
