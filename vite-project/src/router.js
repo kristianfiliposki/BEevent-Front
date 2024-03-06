@@ -7,7 +7,7 @@ import AppDetail from './pages/App.Detail.vue';
 const router = createRouter({
     history: createWebHistory(),
     routes: [{
-        path: '/home',
+        path: '/',
         name: 'home',
         component: AppHomepage
 
@@ -20,7 +20,8 @@ const router = createRouter({
     {
         path: '/ricerca',
         name: 'ricerca',
-        component: AppRicerca
+        component: AppRicerca,
+        props: (route) => ({ specialization: route.query.specialization }),
     },
     {
         path:'/detail/:id',
