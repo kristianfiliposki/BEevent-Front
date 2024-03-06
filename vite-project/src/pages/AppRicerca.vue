@@ -28,10 +28,18 @@ export default {
                 operators = operators.filter(operator => parseFloat(operator.engagement_price) <= parseFloat(this.filterMaxPrice));
             }
             return operators;
-        }
-    }
+        },
+        
+    },
+    methods:{
+      redirectToOperatorView(operator) {
+      // Utilizza il router di Vue.js per navigare alla vista dell'operatore
+      this.$router.push({ name: 'operator-view', params: { operatorId: operator.id, operatorName: operator.name } });
+    },
+    },
 };
 </script>
+
 <template>
     <div class="filterWrap">
 

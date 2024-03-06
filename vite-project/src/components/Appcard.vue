@@ -6,14 +6,16 @@ export default {
   data() {
     return {
       store,
-      selectedSpecialization: '',
+       selectedSpecialization: null,
     };
   },
   computed: {
+    /* filtra gli operatori a secoonda dellle specializzazioni */
     filteredOperators() {
       return this.store.operators.filter(operator => {
         const operatorSpecializations = this.getOperatorSpecializations(operator.id);
         return operatorSpecializations.some(os => os.specialization.name === this.selectedSpecialization);
+        
       });
     },
     operatorsWithActiveSponsorships() {
@@ -24,6 +26,7 @@ export default {
     },
   },
   methods: {
+    /* generatore di specializzazioni */
     getOperatorSpecializations(operatorId) {
       return this.store.operator_specializations
         .filter(os => os.operator_id === operatorId)
@@ -31,25 +34,30 @@ export default {
           id: os.specialization_id,
           specialization: this.store.specializations.find(s => s.id === os.specialization_id),
         }));
-    },
-    isOperatorSponsored(operatorId) {
-      const isSponsored = this.store.operator_sponsorships.some(sponsorship => sponsorship.operator_id === operatorId);
-      console.log(`Operatore ${operatorId} sponsorizzato: ${isSponsored}`);
-      return isSponsored;
-    },
-    activeSponsorships(operatorId) {
-      const sponsorships = this.store.operator_sponsorships.filter(s => s.operator_id === operatorId && this.isntSponsorshipExpired(s));
-      console.log(`Operatore ${operatorId} ha sponsorizzazioni attive: ${sponsorships.length > 0}`);
-      return sponsorships;
-    },
-    isntSponsorshipExpired(sponsorship) {
-      const currentDateTime = moment();
-      const startDate = moment(sponsorship.start_date, 'YYYY-MM-DD HH:mm:ss');
-      const endDate = moment(sponsorship.end_date, 'YYYY-MM-DD HH:mm:ss');
-      const isExpired = currentDateTime.isBetween(startDate, endDate);
-      console.log(`Sponsorizzazione ${sponsorship.id} è scaduta: ${!isExpired}`);
-      return isExpired;
-    },
+      },
+      redirectToFilteredOperators() {
+      // Utilizza il router di Vue.js per navigare alla vista secondaria con gli operatori già filtrati
+      this.$router.push({ name: 'ricerca', params: { specialization: this.selectedSpecialization } });
+      },
+      /* generatrici di sponzorizzate */
+      isOperatorSponsored(operatorId) {
+        const isSponsored = this.store.operator_sponsorships.some(sponsorship => sponsorship.operator_id === operatorId);
+        console.log(`Operatore ${operatorId} sponsorizzato: ${isSponsored}`);
+        return isSponsored;
+      },
+      activeSponsorships(operatorId) {
+        const sponsorships = this.store.operator_sponsorships.filter(s => s.operator_id === operatorId && this.isntSponsorshipExpired(s));
+        console.log(`Operatore ${operatorId} ha sponsorizzazioni attive: ${sponsorships.length > 0}`);
+        return sponsorships;
+      },
+      isntSponsorshipExpired(sponsorship) {
+        const currentDateTime = moment();
+        const startDate = moment(sponsorship.start_date, 'YYYY-MM-DD HH:mm:ss');
+        const endDate = moment(sponsorship.end_date, 'YYYY-MM-DD HH:mm:ss');
+        const isExpired = currentDateTime.isBetween(startDate, endDate);
+        console.log(`Sponsorizzazione ${sponsorship.id} è scaduta: ${!isExpired}`);
+        return isExpired;
+      },
   },
 };
 </script>
@@ -80,14 +88,19 @@ export default {
       </div>
     </section>
 
-    <!-- Input select per selezionare una specializzazione -->
-    <div id="welcome">
-      <label for="selettore" class="bebas-neue-regular">Seleziona una specializzazione:</label>
-      <!-- Utilizza v-model per collegare direttamente la select a selectedSpecialization -->
-      <select name="specializzazioni" id="selettore" v-model="selectedSpecialization">
-        <option :value="dato.name" v-for="dato in store.specializations" :key="dato.id">{{ dato.name }}</option>
-      </select>
-    </div>
+    <div>
+      <!-- Input select per selezionare una specializzazione -->
+      <div id="welcome">
+        <label for="selettore" class="bebas-neue-regular">Seleziona il tuo specialista:</label>
+        <!-- Utilizza v-model per collegare direttamente la select a selectedSpecialization -->
+        <select name="specializzazioni" id="selettore" v-model="selectedSpecialization" @change="redirectToFilteredOperators">
+          <option :value="dato.name" v-for="dato in store.specializations" :key="dato.id">
+            {{ dato.name }}
+          </option>
+        </select>
+      </div>
+    </div> 
+
 
     <!-- Carosello per tutti gli operatori -->
     <section id="fakeBody" class="wrapper" ref="allOperators">
