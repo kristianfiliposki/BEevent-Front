@@ -7,13 +7,13 @@ export default {
 <template>
   <header id="navbar">
 
-    <router-link to="/home">
+    <router-link to="/">
       <img src="/logo/Heavy planning logo.jpg" alt="img">
     </router-link>
     <!--       <router-link to="/dashboard">dashboard</router-link>
        -->
     <router-link to="/dashboard">dashboard</router-link>
-    <a href="/home">Homepage</a>
+    <a href="/">Homepage</a>
     <a href=""><i class="fa-solid fa-plus fa-lg fa-fw"></i> Aggiungi operatore</a>
     <a href="/ricerca">ricerca avanzata</a>
     <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

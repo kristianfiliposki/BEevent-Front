@@ -5,8 +5,9 @@ import AppRicerca from './pages/AppRicerca.vue';
 
 const router = createRouter({
     history: createWebHistory(),
-    routes: [{
-        path: '/home',
+    routes: [
+    {
+        path: '/',
         name: 'home',
         component: AppHomepage
 
@@ -20,9 +21,9 @@ const router = createRouter({
         path: '/ricerca',
         name: 'ricerca',
         component: AppRicerca,
-        props: true
-    }
-    ]
+        props: (route) => ({ specialization: route.query.specialization }),
+    },
+]
 
 
 });

@@ -26,6 +26,7 @@ export default {
     },
   },
   methods: {
+
     /* generatore di specializzazioni */
     getOperatorSpecializations(operatorId) {
       return this.store.operator_specializations
@@ -35,10 +36,25 @@ export default {
           specialization: this.store.specializations.find(s => s.id === os.specialization_id),
         }));
       },
-      redirectToFilteredOperators() {
-      // Utilizza il router di Vue.js per navigare alla vista secondaria con gli operatori già filtrati
-      this.$router.push({ name: 'ricerca', params: { specialization: this.selectedSpecialization } });
-      },
+          navigateToRicerca() {
+      if (this.selectedSpecialization) {
+        this.setSelectedSpecialization(this.selectedSpecialization);
+        this.$router.push({ name: 'ricerca', query: { specialization: this.selectedSpecialization } });
+      }
+    },
+    redirectToFilteredOperators() {
+      if (this.selectedSpecialization) {
+        const filteredOperators = this.filteredOperators.map(operator => operator.id);
+
+        this.$router.push({
+          name: 'ricerca',
+          query: {
+            specialization: this.selectedSpecialization,
+            operators: filteredOperators.join(','),
+          },
+        });
+      }
+    },
       /* generatrici di sponzorizzate */
       isOperatorSponsored(operatorId) {
         const isSponsored = this.store.operator_sponsorships.some(sponsorship => sponsorship.operator_id === operatorId);
@@ -64,25 +80,24 @@ export default {
 
 <template>
   <div>
-    <div>
-      <!-- Input select per selezionare una specializzazione -->
+    <div class="filterWrap">      <!-- Input select per selezionare una specializzazione -->
       <div id="welcome">
         <label for="selettore" class="bebas-neue-regular">Seleziona il tuo specialista:</label>
-        <!-- Utilizza v-model per collegare direttamente la select a selectedSpecialization -->
         <select name="specializzazioni" id="selettore" v-model="selectedSpecialization" @change="redirectToFilteredOperators">
+          <option :value="null" disabled>Seleziona una specializzazione</option>
           <option :value="dato.name" v-for="dato in store.specializations" :key="dato.id">
             {{ dato.name }}
           </option>
         </select>
       </div>
-    </div> 
+    </div>
+  </div> 
 
 
     <!-- Carosello per tutti gli operatori -->
     <section id="fakeBody" class="wrapper" ref="allOperators">
       <!-- Utilizza filteredOperators solo quando è stata selezionata una specializzazione -->
-      <div class="card-css" v-for="operator in (selectedSpecialization ? filteredOperators : store.operators)"
-        :key="operator.id">
+      <div class="card-css" v-for="operator in (selectedSpecialization ? filteredOperators : store.operators)" :key="operator.id">
         <h3>{{ operator.name }}</h3>
         <img :src="'/public/img/' + operator.image" alt="img" class="img-operator">
         <h4>{{ operator.description }}</h4>
@@ -103,7 +118,7 @@ export default {
         </div>
       </div>
     </section>
-  </div>
+
     <!-- Carosello per gli operatori con sponsorizzazioni attive -->
     <h2>Operatori con sponsorizzazioni attive</h2>
     <section class="wrapper" ref="activeSponsorships">
