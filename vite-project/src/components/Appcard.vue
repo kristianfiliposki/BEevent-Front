@@ -155,7 +155,7 @@ export default {
 
     <div class="card-css2" v-for="operator in operatorsWithActiveSponsorships" :key="operator.id">
       <img :src="'/public/img/' + operator.filename" alt="img" class="img-operatorS">
-      <div>
+      <div class="content-box">
         <h3>{{ operator.name }}</h3>
         <h4>{{ operator.description }}</h4>
         <h5>{{ operator.engagement_price }}</h5>
@@ -167,14 +167,14 @@ export default {
           <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
         </div>
         <div v-if="isOperatorSponsored(operator.id)">
-          <p v-for="sponsorship in activeSponsorships(operator.id)" :key="sponsorship.id" style="color: red;">
+          <p v-for="sponsorship in activeSponsorships(operator.id)" :key="sponsorship.id" style="color: white;">
             Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
           </p>
         </div>
         <router-link :to="{
           name: 'detail', params: { id: operator.id }
         }">
-          <p>dettaglio</p>
+          <p>Dettaglio</p>
         </router-link>
       </div>
     </div>
@@ -252,7 +252,7 @@ export default {
 }
 
 .card-css2 {
-  width: 20%;
+  width: 30%;
   border-radius: 15px;
   margin: 9px;
   height: 20rem;
@@ -261,9 +261,12 @@ export default {
 }
 
 .img-operatorS {
-
   width: 50%;
   object-fit: cover;
   object-position: center;
+  border-radius: 10%;
+}
+.content-box,.img-operatorS{
+  margin: 1.1em;
 }
 </style>
