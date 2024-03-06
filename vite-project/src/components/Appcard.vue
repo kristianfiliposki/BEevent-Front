@@ -64,30 +64,6 @@ export default {
 
 <template>
   <div>
-    <!-- Carosello per gli operatori con sponsorizzazioni attive -->
-    <h2>Operatori con sponsorizzazioni attive</h2>
-    <section class="wrapper" ref="activeSponsorships">
-
-      <div class="card-css2" v-for="operator in operatorsWithActiveSponsorships" :key="operator.id">
-        <h3>{{ operator.name }}</h3>
-        <img :src="'/public/img/' + operator.image" alt="img" class="img-operatorS">
-        <h4>{{ operator.description }}</h4>
-        <h5>{{ operator.engagement_price }}</h5>
-        <h5>{{ operator.phone }}</h5>
-
-        <!-- Trova la corrispondente specializzazione per l'operatore -->
-        <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
-          <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
-        </div>
-        <div v-if="isOperatorSponsored(operator.id)">
-          <p v-for="sponsorship in activeSponsorships(operator.id)" :key="sponsorship.id" style="color: red;">
-            Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
-          </p>
-        </div>
-
-      </div>
-    </section>
-
     <div>
       <!-- Input select per selezionare una specializzazione -->
       <div id="welcome">
@@ -128,6 +104,30 @@ export default {
       </div>
     </section>
   </div>
+    <!-- Carosello per gli operatori con sponsorizzazioni attive -->
+    <h2>Operatori con sponsorizzazioni attive</h2>
+    <section class="wrapper" ref="activeSponsorships">
+
+      <div class="card-css2" v-for="operator in operatorsWithActiveSponsorships" :key="operator.id">
+        <h3>{{ operator.name }}</h3>
+        <img :src="'/public/img/' + operator.image" alt="img" class="img-operatorS">
+        <h4>{{ operator.description }}</h4>
+        <h5>{{ operator.engagement_price }}</h5>
+        <h5>{{ operator.phone }}</h5>
+
+        <!-- Trova la corrispondente specializzazione per l'operatore -->
+        <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
+          <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
+        </div>
+        <div v-if="isOperatorSponsored(operator.id)">
+          <p v-for="sponsorship in activeSponsorships(operator.id)" :key="sponsorship.id" style="color: red;">
+            Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
+          </p>
+        </div>
+      </div>
+    </section>
+
+
 </template>
 
 

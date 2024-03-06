@@ -1,6 +1,6 @@
 <script>
 import { store } from '../store';
-
+import Appcard from '../components/Appcard.vue';
 export default {
     data() {
         return {
@@ -11,6 +11,9 @@ export default {
             minPrice: 0, // Valore minimo prezzo
             maxPrice: 1000, // Valore massimo prezzo
         };
+    },
+    components:{
+        Appcard,
     },
     computed: {
         filteredOperators() {
@@ -59,16 +62,9 @@ export default {
             <input class="inputNum" type="number" v-model.number="filterMaxPrice" placeholder="Prezzo massimo"
                 :min="minPrice" :max="maxPrice">
         </div>
+        <Appcard />
     </div>
-    <section id="fakeBody" class="wrapper">
-        <div id="card-css" v-for="dato in filteredOperators" :key="dato.id">
-            <h3>{{ dato.name }}</h3>
-            <img :src="'/public/img/' + dato.image" alt="img" class="img-operator">
-            <h4>{{ dato.description }}</h4>
-            <h5>{{ dato.engagement_price }}</h5>
-            <h5>{{ dato.phone }}</h5>
-        </div>
-    </section>
+    
 </template>
 <style scoped>
 #fakeBody {
