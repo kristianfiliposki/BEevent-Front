@@ -19,7 +19,8 @@ const router = createRouter({
     {
         path: '/ricerca',
         name: 'ricerca',
-        component: AppRicerca
+        component: AppRicerca,
+        props: true
     }
     ]
 
