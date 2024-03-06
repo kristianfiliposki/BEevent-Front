@@ -8,15 +8,19 @@ export default {
     return {
       store,
       showTextarea: false,
-      showTextarea2: false
+      showTextarea2: false,
+      showButton:false,
+      showButton2:false
     };
   },
   methods: {
     createTextarea: function() {
       this.showTextarea = true;
+      this.showButton = true;
     },
     createTextarea2: function() {
       this.showTextarea2 = true;
+      this.showButton2 = true;
     }
   },
   computed: {
@@ -53,9 +57,11 @@ export default {
 <div class="textareacontainer">
   <div v-if="showTextarea">
     <textarea class="text" rows="4" cols="50" placeholder="Scrivi il tuo messaggio qui..."></textarea>
+    <button class="btn">Invia</button>
   </div>
   <div v-if="showTextarea2">
-    <textarea class="text2" rows="4" cols="50" placeholder="Scrivi il tuo messaggio qui..."></textarea>
+    <textarea class="text2" rows="4" cols="50" placeholder="Scrivi la tua recensione qui..."></textarea>
+    <button class="btn">Invia</button>
   </div>
 </div>
 
@@ -85,6 +91,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 .btn{
   margin: 2% 2% 2% 2%;
