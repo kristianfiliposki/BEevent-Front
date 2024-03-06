@@ -121,7 +121,7 @@ export default {
     <div class="card-css" v-for="operator in (selectedSpecialization ? filteredOperators : store.operators)"
       :key="operator.id">
       <h3>{{ operator.name }}</h3>
-      <img :src="'/public/img/' + operator.image" alt="img" class="img-operator">
+      <img :src="'/public/img/' + operator.filename" alt="img" class="img-operator">
       <h4>{{ operator.description }}</h4>
       <h5>{{ operator.engagement_price }}</h5>
       <h5>{{ operator.phone }}</h5>
@@ -154,29 +154,31 @@ export default {
   <section class="wrapper" ref="activeSponsorships">
 
     <div class="card-css2" v-for="operator in operatorsWithActiveSponsorships" :key="operator.id">
-      <h3>{{ operator.name }}</h3>
-      <img :src="'/public/img/' + operator.image" alt="img" class="img-operatorS">
-      <h4>{{ operator.description }}</h4>
-      <h5>{{ operator.engagement_price }}</h5>
-      <h5>{{ operator.phone }}</h5>
+      <img :src="'/public/img/' + operator.filename" alt="img" class="img-operatorS">
+      <div>
+        <h3>{{ operator.name }}</h3>
+        <h4>{{ operator.description }}</h4>
+        <h5>{{ operator.engagement_price }}</h5>
+        <h5>{{ operator.phone }}</h5>
+        <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
 
-      <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
-
-      <!-- Trova la corrispondente specializzazione per l'operatore -->
-      <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
-        <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
+        <!-- Trova la corrispondente specializzazione per l'operatore -->
+        <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
+          <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
+        </div>
+        <div v-if="isOperatorSponsored(operator.id)">
+          <p v-for="sponsorship in activeSponsorships(operator.id)" :key="sponsorship.id" style="color: red;">
+            Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
+          </p>
+        </div>
+        <router-link :to="{
+          name: 'detail', params: { id: operator.id }
+        }">
+          <p>dettaglio</p>
+        </router-link>
       </div>
-      <div v-if="isOperatorSponsored(operator.id)">
-        <p v-for="sponsorship in activeSponsorships(operator.id)" :key="sponsorship.id" style="color: red;">
-          Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
-        </p>
-      </div>
-      <router-link :to="{
-        name: 'detail', params: { id: operator.id }
-      }">
-        <p>dettaglio</p>
-      </router-link>
     </div>
+
   </section>
 </template>
 
@@ -221,7 +223,7 @@ export default {
 }
 
 .card-css {
-  width: calc((100% / 3));
+  width: calc((100% / 4));
   background-color: rgb(165, 164, 164);
   border-radius: 15px;
   margin: 9px;
@@ -238,10 +240,10 @@ export default {
 }
 
 .img-operator {
-  min-height: 75%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
+  min-height: 60%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .wrapper {
@@ -255,11 +257,12 @@ export default {
   margin: 9px;
   height: 20rem;
   background-color: rgba(0, 0, 0, 0.121);
+  display: flex;
 }
 
 .img-operatorS {
 
-  width: 30%;
+  width: 50%;
   object-fit: cover;
   object-position: center;
 }

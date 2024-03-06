@@ -148,7 +148,7 @@ export default {
         <div class="card-css" v-for="operator in filteredOperators" :key="operator.id">
             <!-- ... Existing card content ... -->
             <h3>{{ operator.name }}</h3>
-            <img :src="'/public/img/' + operator.image" alt="img" class="img-operator">
+            <img :src="'/public/img/' + operator.filename" alt="img" class="img-operator">
             <h4>{{ operator.description }}</h4>
             <h5>{{ operator.engagement_price }}</h5>
             <h5>{{ operator.phone }}</h5>
@@ -206,7 +206,7 @@ export default {
 }
 
 .card-css {
-    width: calc((100% / 3));
+    width: calc((100% / 4));
     background-color: rgb(165, 164, 164);
     border-radius: 15px;
     margin: 9px;
@@ -222,11 +222,12 @@ export default {
 }
 
 .img-operator {
-    min-height: 75%;
+    min-height: 60%;
     width: 100%;
     object-fit: cover;
     object-position: center;
 }
+
 
 .filterWrap {
     background-color: #090021;
