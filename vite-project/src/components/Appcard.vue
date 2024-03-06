@@ -6,7 +6,7 @@ export default {
   data() {
     return {
       store,
-       selectedSpecialization: null,
+      selectedSpecialization: null,
     };
   },
   computed: {
@@ -15,7 +15,7 @@ export default {
       return this.store.operators.filter(operator => {
         const operatorSpecializations = this.getOperatorSpecializations(operator.id);
         return operatorSpecializations.some(os => os.specialization.name === this.selectedSpecialization);
-        
+
       });
     },
     operatorsWithActiveSponsorships() {
@@ -23,6 +23,26 @@ export default {
         return this.isOperatorSponsored(operator.id) &&
           this.activeSponsorships(operator.id).length > 0;
       });
+    },
+    operatorReviews() {
+      const operatorReviews = {};
+      this.store.reviews.forEach(review => {
+        if (!operatorReviews[review.operator_id]) {
+          operatorReviews[review.operator_id] = [];
+        }
+        operatorReviews[review.operator_id].push(review.vote_id);
+      });
+      return operatorReviews;
+    },
+    operatorAverageRatings() {
+      const averageRatings = {};
+      Object.keys(this.operatorReviews).forEach(operatorId => {
+        const ratings = this.operatorReviews[operatorId];
+        const sum = ratings.reduce((acc, rating) => acc + rating, 0);
+        const average = sum / ratings.length;
+        averageRatings[operatorId] = average.toFixed(2); // Arrotonda la media a 2 decimali
+      });
+      return averageRatings;
     },
   },
   methods: {
@@ -35,8 +55,8 @@ export default {
           id: os.specialization_id,
           specialization: this.store.specializations.find(s => s.id === os.specialization_id),
         }));
-      },
-          navigateToRicerca() {
+    },
+    navigateToRicerca() {
       if (this.selectedSpecialization) {
         this.setSelectedSpecialization(this.selectedSpecialization);
         this.$router.push({ name: 'ricerca', query: { specialization: this.selectedSpecialization } });
@@ -55,35 +75,36 @@ export default {
         });
       }
     },
-      /* generatrici di sponzorizzate */
-      isOperatorSponsored(operatorId) {
-        const isSponsored = this.store.operator_sponsorships.some(sponsorship => sponsorship.operator_id === operatorId);
-        console.log(`Operatore ${operatorId} sponsorizzato: ${isSponsored}`);
-        return isSponsored;
-      },
-      activeSponsorships(operatorId) {
-        const sponsorships = this.store.operator_sponsorships.filter(s => s.operator_id === operatorId && this.isntSponsorshipExpired(s));
-        console.log(`Operatore ${operatorId} ha sponsorizzazioni attive: ${sponsorships.length > 0}`);
-        return sponsorships;
-      },
-      isntSponsorshipExpired(sponsorship) {
-        const currentDateTime = moment();
-        const startDate = moment(sponsorship.start_date, 'YYYY-MM-DD HH:mm:ss');
-        const endDate = moment(sponsorship.end_date, 'YYYY-MM-DD HH:mm:ss');
-        const isExpired = currentDateTime.isBetween(startDate, endDate);
-        console.log(`Sponsorizzazione ${sponsorship.id} è scaduta: ${!isExpired}`);
-        return isExpired;
-      },
+    /* generatrici di sponzorizzate */
+    isOperatorSponsored(operatorId) {
+      const isSponsored = this.store.operator_sponsorships.some(sponsorship => sponsorship.operator_id === operatorId);
+      console.log(`Operatore ${operatorId} sponsorizzato: ${isSponsored}`);
+      return isSponsored;
+    },
+    activeSponsorships(operatorId) {
+      const sponsorships = this.store.operator_sponsorships.filter(s => s.operator_id === operatorId && this.isntSponsorshipExpired(s));
+      console.log(`Operatore ${operatorId} ha sponsorizzazioni attive: ${sponsorships.length > 0}`);
+      return sponsorships;
+    },
+    isntSponsorshipExpired(sponsorship) {
+      const currentDateTime = moment();
+      const startDate = moment(sponsorship.start_date, 'YYYY-MM-DD HH:mm:ss');
+      const endDate = moment(sponsorship.end_date, 'YYYY-MM-DD HH:mm:ss');
+      const isExpired = currentDateTime.isBetween(startDate, endDate);
+      console.log(`Sponsorizzazione ${sponsorship.id} è scaduta: ${!isExpired}`);
+      return isExpired;
+    },
   },
 };
 </script>
 
 <template>
   <div>
-    <div class="filterWrap">      <!-- Input select per selezionare una specializzazione -->
+    <div class="filterWrap"> <!-- Input select per selezionare una specializzazione -->
       <div id="welcome">
         <label for="selettore" class="bebas-neue-regular">Seleziona il tuo specialista:</label>
-        <select name="specializzazioni" id="selettore" v-model="selectedSpecialization" @change="redirectToFilteredOperators">
+        <select name="specializzazioni" id="selettore" v-model="selectedSpecialization"
+          @change="redirectToFilteredOperators">
           <option :value="null" disabled>Seleziona una specializzazione</option>
           <option :value="dato.name" v-for="dato in store.specializations" :key="dato.id">
             {{ dato.name }}
@@ -91,68 +112,72 @@ export default {
         </select>
       </div>
     </div>
-  </div> 
+  </div>
 
 
-    <!-- Carosello per tutti gli operatori -->
-    <section id="fakeBody" class="wrapper" ref="allOperators">
-      <!-- Utilizza filteredOperators solo quando è stata selezionata una specializzazione -->
-      <div class="card-css" v-for="operator in (selectedSpecialization ? filteredOperators : store.operators)" :key="operator.id">
-        <h3>{{ operator.name }}</h3>
-        <img :src="'/public/img/' + operator.image" alt="img" class="img-operator">
-        <h4>{{ operator.description }}</h4>
-        <h5>{{ operator.engagement_price }}</h5>
-        <h5>{{ operator.phone }}</h5>
-        <router-link :to="{
-            name: 'detail', params: { id: operator.id }
-          }">
-            <p>dettaglio</p>
-          </router-link>
+  <!-- Carosello per tutti gli operatori -->
+  <section id="fakeBody" class="wrapper" ref="allOperators">
+    <!-- Utilizza filteredOperators solo quando è stata selezionata una specializzazione -->
+    <div class="card-css" v-for="operator in (selectedSpecialization ? filteredOperators : store.operators)"
+      :key="operator.id">
+      <h3>{{ operator.name }}</h3>
+      <img :src="'/public/img/' + operator.image" alt="img" class="img-operator">
+      <h4>{{ operator.description }}</h4>
+      <h5>{{ operator.engagement_price }}</h5>
+      <h5>{{ operator.phone }}</h5>
+      <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
 
-        <!-- Trova la corrispondente specializzazione per l'operatore -->
-        <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
-          <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
-        </div>
 
-        <!-- Aggiunta per visualizzare l'ID dell'operatore se sponsorizzato -->
-        <div v-if="isOperatorSponsored(operator.id)">
-          <p v-for="sponsorship in store.operator_sponsorships.filter(s => s.operator_id === operator.id)"
-            :key="sponsorship.id">
-            Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
-          </p>
-        </div>
+      <router-link :to="{
+        name: 'detail', params: { id: operator.id }
+      }">
+        <p>dettaglio</p>
+      </router-link>
+
+      <!-- Trova la corrispondente specializzazione per l'operatore -->
+      <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
+        <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
       </div>
-    </section>
 
-    <!-- Carosello per gli operatori con sponsorizzazioni attive -->
-    <h2>Operatori con sponsorizzazioni attive</h2>
-    <section class="wrapper" ref="activeSponsorships">
-
-      <div class="card-css2" v-for="operator in operatorsWithActiveSponsorships" :key="operator.id">
-        <h3>{{ operator.name }}</h3>
-        <img :src="'/public/img/' + operator.image" alt="img" class="img-operatorS">
-        <h4>{{ operator.description }}</h4>
-        <h5>{{ operator.engagement_price }}</h5>
-        <h5>{{ operator.phone }}</h5>
-
-        <!-- Trova la corrispondente specializzazione per l'operatore -->
-        <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
-          <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
-        </div>
-        <div v-if="isOperatorSponsored(operator.id)">
-          <p v-for="sponsorship in activeSponsorships(operator.id)" :key="sponsorship.id" style="color: red;">
-            Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
-          </p>
-        </div>
-        <router-link :to="{
-            name: 'detail', params: { id: operator.id }
-          }">
-            <p>dettaglio</p>
-          </router-link>
+      <!-- Aggiunta per visualizzare l'ID dell'operatore se sponsorizzato -->
+      <div v-if="isOperatorSponsored(operator.id)">
+        <p v-for="sponsorship in store.operator_sponsorships.filter(s => s.operator_id === operator.id)"
+          :key="sponsorship.id">
+          Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
+        </p>
       </div>
-    </section>
+    </div>
+  </section>
 
+  <!-- Carosello per gli operatori con sponsorizzazioni attive -->
+  <h2>Operatori con sponsorizzazioni attive</h2>
+  <section class="wrapper" ref="activeSponsorships">
 
+    <div class="card-css2" v-for="operator in operatorsWithActiveSponsorships" :key="operator.id">
+      <h3>{{ operator.name }}</h3>
+      <img :src="'/public/img/' + operator.image" alt="img" class="img-operatorS">
+      <h4>{{ operator.description }}</h4>
+      <h5>{{ operator.engagement_price }}</h5>
+      <h5>{{ operator.phone }}</h5>
+
+      <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
+
+      <!-- Trova la corrispondente specializzazione per l'operatore -->
+      <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
+        <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
+      </div>
+      <div v-if="isOperatorSponsored(operator.id)">
+        <p v-for="sponsorship in activeSponsorships(operator.id)" :key="sponsorship.id" style="color: red;">
+          Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
+        </p>
+      </div>
+      <router-link :to="{
+        name: 'detail', params: { id: operator.id }
+      }">
+        <p>dettaglio</p>
+      </router-link>
+    </div>
+  </section>
 </template>
 
 
