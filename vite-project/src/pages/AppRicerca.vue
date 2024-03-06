@@ -151,6 +151,11 @@ export default {
         <h4>{{ operator.description }}</h4>
         <h5>{{ operator.engagement_price }}</h5>
         <h5>{{ operator.phone }}</h5>
+        <router-link :to="{
+            name: 'detail', params: { id: operator.id }
+          }">
+            <p>dettaglio</p>
+          </router-link>
       </div>
     </section>
 </template>

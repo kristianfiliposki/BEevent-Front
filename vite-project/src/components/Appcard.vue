@@ -103,6 +103,11 @@ export default {
         <h4>{{ operator.description }}</h4>
         <h5>{{ operator.engagement_price }}</h5>
         <h5>{{ operator.phone }}</h5>
+        <router-link :to="{
+            name: 'detail', params: { id: operator.id }
+          }">
+            <p>dettaglio</p>
+          </router-link>
 
         <!-- Trova la corrispondente specializzazione per l'operatore -->
         <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
@@ -139,6 +144,11 @@ export default {
             Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
           </p>
         </div>
+        <router-link :to="{
+            name: 'detail', params: { id: operator.id }
+          }">
+            <p>dettaglio</p>
+          </router-link>
       </div>
     </section>
 
@@ -195,6 +205,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 96%;
+  background-color: rgba(0, 0, 0, 0.121);
 }
 
 #card-css h3 {
@@ -215,10 +226,10 @@ export default {
 
 .card-css2 {
   width: 20%;
-  background-color: rgb(165, 164, 164);
   border-radius: 15px;
   margin: 9px;
   height: 20rem;
+  background-color: rgba(0, 0, 0, 0.121);
 }
 
 .img-operatorS {
