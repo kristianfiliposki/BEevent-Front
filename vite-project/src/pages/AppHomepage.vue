@@ -23,7 +23,7 @@ export default {
 </script>
 
 <template>
-  <AppPresentation />
+
   <Appcard />
   <router-view></router-view>
 </template>
