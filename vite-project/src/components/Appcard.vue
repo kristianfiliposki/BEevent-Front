@@ -1,86 +1,180 @@
 <script>
 import { store } from '../store';
+import moment from 'moment';
+import { useRouter } from 'vue-router';
+
 export default {
   data() {
     return {
       store,
-      specialization:"",
-      visible:true,
-    }
+      selectedSpecialization: '',
+    };
+  },
+  computed: {
+    filteredOperators() {
+      return this.store.operators.filter(operator => {
+        const operatorSpecializations = this.getOperatorSpecializations(operator.id);
+        return operatorSpecializations.some(os => os.specialization.name === this.selectedSpecialization);
+      });
+    },
+    operatorReviews() {
+      const operatorReviews = {};
+      this.store.reviews.forEach(review => {
+        if (!operatorReviews[review.operator_id]) {
+          operatorReviews[review.operator_id] = [];
+        }
+        operatorReviews[review.operator_id].push(review.vote_id);
+      });
+      return operatorReviews;
+    },
+    operatorAverageRatings() {
+      const averageRatings = {};
+      Object.keys(this.operatorReviews).forEach(operatorId => {
+        const ratings = this.operatorReviews[operatorId];
+        const sum = ratings.reduce((acc, rating) => acc + rating, 0);
+        const average = sum / ratings.length;
+        averageRatings[operatorId] = average.toFixed(2); // Arrotonda la media a 2 decimali
+      });
+      return averageRatings;
+    },
+    operatorsWithActiveSponsorships() {
+      return this.store.operators.filter(operator => {
+        return this.isOperatorSponsored(operator.id) &&
+          this.activeSponsorships(operator.id).length > 0;
+      });
+    },
   },
   methods: {
     getOperatorSpecializations(operatorId) {
-      // Filtra le specializzazioni corrispondenti all'operatore
-      const operatorSpecializations = this.store.operator_specializations
+      return this.store.operator_specializations
         .filter(os => os.operator_id === operatorId)
         .map(os => ({
           id: os.specialization_id,
           specialization: this.store.specializations.find(s => s.id === os.specialization_id),
         }));
-
-      return operatorSpecializations;
     },
-    filterSpec(){
-      let selector=this.$refs.selector;
-      let specializzatione=this.$refs.specializzatione;
-      /* se la specializzazione dell'operatore iclude il valore del selettore */
-      if (
-        specializzatione.innerText.include(selector.innerText)
-      ) 
-      /* allora... */
-      {
-        this.visible=true;
-      }
-      else{
-        this.visible=false;
-      }
-    
-      console.log(this.visible)
-      return this.visible;
+    isOperatorSponsored(operatorId) {
+      const isSponsored = this.store.operator_sponsorships.some(sponsorship => sponsorship.operator_id === operatorId);
+      console.log(`Operatore ${operatorId} sponsorizzato: ${isSponsored}`);
+      return isSponsored;
+    },
+    activeSponsorships(operatorId) {
+      const sponsorships = this.store.operator_sponsorships.filter(s => s.operator_id === operatorId && this.isntSponsorshipExpired(s));
+      console.log(`Operatore ${operatorId} ha sponsorizzazioni attive: ${sponsorships.length > 0}`);
+      return sponsorships;
+    },
+    isntSponsorshipExpired(sponsorship) {
+      const currentDateTime = moment();
+      const startDate = moment(sponsorship.start_date, 'YYYY-MM-DD HH:mm:ss');
+      const endDate = moment(sponsorship.end_date, 'YYYY-MM-DD HH:mm:ss');
+      const isExpired = currentDateTime.isBetween(startDate, endDate);
+      console.log(`Sponsorizzazione ${sponsorship.id} è scaduta: ${!isExpired}`);
+      return isExpired;
+    },
+    viewOperatorDetails(operatorID) {
+      const router = useRouter();
+      router.push({ name: 'detail', params: { id: operatorID } }); // Reindirizza alla pagina dei dettagli dell'operatore con l'ID come parametro
     }
-
   },
-}
+};
 </script>
+
 <template>
+  <div>
+    <!-- Carosello per gli operatori con sponsorizzazioni attive -->
+    <h2>Operatori con sponsorizzazioni attive</h2>
+    <section class="wrapper" ref="activeSponsorships">
 
-  <div id="welcome">
-    <select name="specializzazioni" id="selettore">
-      <option ref="selector" :value="dato.name" v-for="dato in store.specializations " @click="">{{ dato.name }}</option>
-    </select>
-  </div>
+      <div class="card-css2" v-for="operator in operatorsWithActiveSponsorships" :key="operator.id">
+        <h3>{{ operator.name }}</h3>
+        <img :src="'/public/img/' + operator.image" alt="img" class="img-operatorS">
+        <h4>{{ operator.description }}</h4>
+        <h5>{{ operator.engagement_price }}</h5>
+        <h5>{{ operator.phone }}</h5>
 
+        <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
 
+        <!-- Trova la corrispondente specializzazione per l'operatore -->
+        <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
+          <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
+        </div>
+        <div v-if="isOperatorSponsored(operator.id)">
+          <p v-for="sponsorship in activeSponsorships(operator.id)" :key="sponsorship.id" style="color: red;">
+            Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
+          </p>
+        </div>
 
-  <section id="fakeBody" class="wrapper" ref="card" v-show="this.visible">
-    <div class="card-css" v-for="operator in store.operators" :key="operator.id">
-      <h3>{{ operator.name }}</h3>
-      <img :src="'/public/img/' + operator.image" alt="img" class="img-operator">
-      <h4>{{ operator.description }}</h4>
-      <h5>{{ operator.engagement_price }}</h5>
-      <h5>{{ operator.phone }}</h5>
-
-      <!-- Trova la corrispondente specializzazione per l'operatore -->
-      <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
-        <p ref="specializzazione">{{ operatorSpecialization.specialization.name }}</p>
       </div>
+    </section>
+
+    <!-- Input select per selezionare una specializzazione -->
+    <div id="welcome">
+      <label for="selettore" class="bebas-neue-regular">Seleziona una specializzazione:</label>
+      <!-- Utilizza v-model per collegare direttamente la select a selectedSpecialization -->
+      <select name="specializzazioni" id="selettore" v-model="selectedSpecialization">
+        <option :value="dato.name" v-for="dato in store.specializations" :key="dato.id">{{ dato.name }}</option>
+      </select>
     </div>
-  </section>
+
+    <!-- Carosello per tutti gli operatori -->
+    <section id="fakeBody" class="wrapper" ref="allOperators">
+      <!-- Utilizza filteredOperators solo quando è stata selezionata una specializzazione -->
+      <div class="card-css" v-for="operator in (selectedSpecialization ? filteredOperators : store.operators)"
+        :key="operator.id">
+        <h3>{{ operator.name }}</h3>
+        <img :src="'/public/img/' + operator.image" alt="img" class="img-operator">
+        <h4>{{ operator.description }}</h4>
+        <h5>{{ operator.engagement_price }}</h5>
+        <h5>{{ operator.phone }}</h5>
+
+        <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
+
+        <div class="card-css" :key="operator.id">
+          <!-- Altri contenuti della card... -->
+          <router-link :to="{
+            name: 'detail', params: { id: operator.id }
+          }">
+            <p>dettaglio</p>
+          </router-link>
+        </div>
 
 
+        <!-- Trova la corrispondente specializzazione per l'operatore -->
+        <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
+          <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
+        </div>
 
+        <!-- Aggiunta per visualizzare l'ID dell'operatore se sponsorizzato -->
+        <div v-if="isOperatorSponsored(operator.id)">
+          <p v-for="sponsorship in store.operator_sponsorships.filter(s => s.operator_id === operator.id)"
+            :key="sponsorship.id">
+            Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
+
+
 <style scoped>
 #welcome {
   margin-top: 2em;
   width: 100%;
-  position: fixed;
   height: 10vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: sticky;
+  color: white;
+  font-size: 1.2em;
+}
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0.6em;
 }
 
 #welcome h1 {
@@ -104,7 +198,7 @@ export default {
 
 .card-css {
   width: calc((100% / 3));
-  background-color: rgb(165, 164, 164);
+  background-color: rgba(0, 0, 0, 0.121);
   border-radius: 15px;
   margin: 9px;
   display: flex;
@@ -115,12 +209,32 @@ export default {
 }
 
 #card-css h3 {
-  border-bottom: 3px solid rgb(143, 141, 141);
+  border-bottom: 3px solid rgb(0, 0, 0, );
 }
 
 .img-operator {
   min-height: 75%;
   width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-css2 {
+  width: 20%;
+  background-color: rgba(0, 0, 0, 0.121);
+  border-radius: 15px;
+  margin: 9px;
+  height: 20rem;
+}
+
+.img-operatorS {
+
+  width: 30%;
   object-fit: cover;
   object-position: center;
 }
