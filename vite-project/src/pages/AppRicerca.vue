@@ -151,14 +151,12 @@ export default {
             <img :src="'/public/img/' + operator.filename" alt="img" class="img-operator">
             <h4>{{ operator.description }}</h4>
             <h5>tariffa: {{ operator.engagement_price }}</h5>
-
-
-                <h3>Average Rating</h3>
-                <div class="stelline">
-                    <div v-for=" in  (Math.round((operatorAverageRatings[operator.id])))">
-                        <i class="fa-solid fa-star"></i>
-                    </div>
+            <h3>Average Rating</h3>
+            <div class="stelline">
+                <div v-for=" in  (Math.round((operatorAverageRatings[operator.id])))">
+                    <i class="fa-solid fa-star"></i>
                 </div>
+            </div>
 
             <router-link :to="{
                 name: 'detail', params: { id: operator.id }
