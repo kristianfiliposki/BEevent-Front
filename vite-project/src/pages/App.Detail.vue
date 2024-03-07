@@ -1,6 +1,7 @@
 <script>
 import { store } from '../store.js';
 import { computed } from 'vue';
+import axios from 'axios';
 
 export default {
   name: 'AppDetail',
@@ -10,7 +11,8 @@ export default {
       showTextarea: false,
       showTextarea2: false,
       showButton:false,
-      showButton2:false
+      showButton2:false,
+      votes : []
     };
   },
   methods: {
@@ -21,6 +23,19 @@ export default {
     createTextarea2: function() {
       this.showTextarea2 = true;
       this.showButton2 = true;
+    },
+    getVotes : function(){
+      axios.get("http://127.0.0.1:8000/api/votes").then(risultato => {
+        for(let i=0; i<risultato.data.length; i++){
+          this.votes.push(
+            {
+              id : risultato.data[i].id,
+              vote : risultato.data[i].vote
+            }
+          )
+        }
+        console.log(this.votes);
+      })
     }
   },
   computed: {
@@ -29,6 +44,9 @@ export default {
       return this.store.operators.find(operator => operator.id === operatorId); // Trova l'operatore corrispondente nell'array degli operatori
     },
   },
+  mounted(){
+    this.getVotes();
+  }
 };
 </script>
 
@@ -62,10 +80,16 @@ export default {
     <input name="author" type="text" placeholder="Inserisci il tuo nome">
     <input type="submit" value="Invia">
   </form>
-  <div v-if="showTextarea2">
-    <textarea class="text2" rows="4" cols="50" placeholder="Scrivi la tua recensione qui..."></textarea>
-    <button class="btn">Invia</button>
-  </div>
+  <form action="http://127.0.0.1:8000/review" method="GET">
+    <input name="operator_id" type="hidden" v-model="operator.id">
+    <select name="vote_id">
+      <option v-for="vote in votes" :value="vote.id">{{ vote.vote }}</option>
+    </select>
+    <textarea class="text2" name="comment" cols="50" rows="4" placeholder="Scrivi la tua recensione qui..."></textarea>
+    <input name="author" type="text" placeholder="Inserisci il tuo nome">
+    <input name="user_email" type="email" placeholder="Inserisci la tua email">
+    <input type="submit" value="Invia">
+  </form>
 </div>
 
 </template>
