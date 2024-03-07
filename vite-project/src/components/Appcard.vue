@@ -102,7 +102,7 @@ export default {
   <div>
     <div class="filterWrap"> <!-- Input select per selezionare una specializzazione -->
       <div id="welcome">
-        <label for="selettore" class="bebas-neue-regular">Seleziona il tuo specialista:</label>
+        <label for="selettore" class="bebas-neue-regular">Se hai voglia di un suono in particolare:</label>
         <select name="specializzazioni" id="selettore" v-model="selectedSpecialization"
           @change="redirectToFilteredOperators">
           <option :value="null" disabled>Seleziona una specializzazione</option>
@@ -113,6 +113,34 @@ export default {
       </div>
     </div>
   </div>
+  <!-- Carosello per gli operatori con sponsorizzazioni attive -->
+  <h2 class="subtitle">Oppure dai un occhiata ai nostri talenti preferiti</h2>
+
+  <section class="wrapper2" ref="activeSponsorships">
+
+    <div class="card-css2" v-for="operator in operatorsWithActiveSponsorships" :key="operator.id">
+      <img :src="'/public/img/' + operator.filename" alt="img" class="img-operatorS">
+      <div class="content-box">
+        <h3>{{ operator.name }}</h3>
+        <h5>tariffa: {{ operator.engagement_price }} $</h5>
+
+        <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
+
+        <!-- Trova la corrispondente specializzazione per l'operatore -->
+        <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
+          <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
+        </div>
+
+        <router-link :to="{
+          name: 'detail', params: { id: operator.id }
+        }">
+          <p>dettaglio</p>
+        </router-link>
+      </div>
+    </div>
+
+  </section>
+
 
 
   <!-- Carosello per tutti gli operatori -->
@@ -148,38 +176,6 @@ export default {
       </div>
     </div>
   </section>
-
-  <!-- Carosello per gli operatori con sponsorizzazioni attive -->
-  <h2>Operatori con sponsorizzazioni attive</h2>
-  <section class="wrapper" ref="activeSponsorships">
-
-    <div class="card-css2" v-for="operator in operatorsWithActiveSponsorships" :key="operator.id">
-      <img :src="'/public/img/' + operator.filename" alt="img" class="img-operatorS">
-      <div class="content-box">
-        <h3>{{ operator.name }}</h3>
-        <h4>{{ operator.description }}</h4>
-        <h5>{{ operator.engagement_price }}</h5>
-        <h5>{{ operator.phone }}</h5>
-        <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
-
-        <!-- Trova la corrispondente specializzazione per l'operatore -->
-        <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
-          <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
-        </div>
-        <div v-if="isOperatorSponsored(operator.id)">
-          <p v-for="sponsorship in activeSponsorships(operator.id)" :key="sponsorship.id" style="color: white;">
-            Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
-          </p>
-        </div>
-        <router-link :to="{
-          name: 'detail', params: { id: operator.id }
-        }">
-          <p>dettaglio</p>
-        </router-link>
-      </div>
-    </div>
-
-  </section>
 </template>
 
 
@@ -200,6 +196,16 @@ export default {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
+  font-size: 3rem;
+  margin: 0.6em;
+}
+
+.subtitle {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+
   margin: 0.6em;
 }
 
@@ -241,9 +247,9 @@ export default {
 
 .img-operator {
   min-height: 60%;
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .wrapper {
@@ -251,13 +257,27 @@ export default {
   flex-wrap: wrap;
 }
 
-.card-css2 {
-  width: 30%;
-  border-radius: 15px;
-  margin: 9px;
-  height: 20rem;
-  background-color: rgba(0, 0, 0, 0.121);
+.wrapper2 {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: left;
+}
+
+.card-css2 {
+  width: 15%;
+  aspect-ratio: 1;
+  border-radius: 15px;
+  margin: 9px 5%;
+  text-align: center;
+  padding: 0.2rem;
+
+  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+
+
+  background-color: rgba(0, 0, 0, 0.121);
+
 }
 
 .img-operatorS {
@@ -265,8 +285,7 @@ export default {
   object-fit: cover;
   object-position: center;
   border-radius: 10%;
-}
-.content-box,.img-operatorS{
-  margin: 1.1em;
+  -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 2px 15px 16px rgba(0, 0, 0, 0);
+  box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 2px 15px 16px rgba(0, 0, 0, 0);
 }
 </style>

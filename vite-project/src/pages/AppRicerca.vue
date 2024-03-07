@@ -150,8 +150,8 @@ export default {
             <h3>{{ operator.name }}</h3>
             <img :src="'/public/img/' + operator.filename" alt="img" class="img-operator">
             <h4>{{ operator.description }}</h4>
-            <h5>{{ operator.engagement_price }}</h5>
-            <h5>{{ operator.phone }}</h5>
+            <h5>tariffa: {{ operator.engagement_price }}</h5>
+
 
             <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
 
@@ -194,32 +194,8 @@ export default {
     color: #F6FB01;
 }
 
-#fakeBody {
-    width: 100vw;
-    height: 60vh;
-    overflow-y: auto;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 2em;
-    flex-direction: column;
-}
 
-.card-css {
-    width: calc((100% / 4));
-    background-color: rgb(165, 164, 164);
-    border-radius: 15px;
-    margin: 9px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 96%;
-}
 
-#card-css h3 {
-    border-bottom: 3px solid rgb(143, 141, 141);
-}
 
 .img-operator {
     min-height: 60%;
@@ -283,8 +259,9 @@ export default {
 }
 
 .img-operator {
-    min-height: 75%;
+
     width: 100%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     object-position: center;
 }
@@ -292,14 +269,23 @@ export default {
 .wrapper {
     display: flex;
     flex-wrap: wrap;
+    justify-content: left;
 }
 
-.card-css2 {
-    width: 20%;
-    background-color: rgb(165, 164, 164);
+.card-css {
+    width: 15%;
+    aspect-ratio: 1 1;
     border-radius: 15px;
-    margin: 9px;
-    height: 20rem;
+    margin: 1rem 2%;
+    text-align: center;
+    padding: 0.2rem;
+
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+
+
+    background-color: rgba(0, 0, 0, 0.121);
+
 }
 
 .img-operatorS {
@@ -307,4 +293,5 @@ export default {
     width: 30%;
     object-fit: cover;
     object-position: center;
-}</style>
+}
+</style>
