@@ -125,6 +125,12 @@ export default {
         <h5>tariffa: {{ operator.engagement_price }} $</h5>
 
         <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
+        <h3>Average Rating</h3>
+        <div class="stelline">
+            <div v-for=" in  (Math.round((operatorAverageRatings[operator.id])))">
+                <i class="fa-solid fa-star"></i>
+            </div>
+        </div>
 
         <!-- Trova la corrispondente specializzazione per l'operatore -->
         <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
@@ -154,6 +160,14 @@ export default {
       <h5>{{ operator.engagement_price }}</h5>
       <h5>{{ operator.phone }}</h5>
       <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
+      <div class="stelline">
+          <div v-if="operatorAverageRatings[operator.id] " v-for="index in Math.round((operatorAverageRatings[operator.id]))" :key="index">
+              <i class="fa-solid fa-star"></i>
+          </div>
+      </div>
+      
+
+
 
 
       <router-link :to="{
@@ -287,5 +301,11 @@ export default {
   border-radius: 10%;
   -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 2px 15px 16px rgba(0, 0, 0, 0);
   box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 2px 15px 16px rgba(0, 0, 0, 0);
+}
+.stelline{
+    display: flex;
+    justify-content: center;
+    color: violet;
+    margin: 0.6em;
 }
 </style>

@@ -153,7 +153,12 @@ export default {
             <h5>tariffa: {{ operator.engagement_price }}</h5>
 
 
-            <p>Average Rating: {{ operatorAverageRatings[operator.id] }}</p>
+                <h3>Average Rating</h3>
+                <div class="stelline">
+                    <div v-for=" in  (Math.round((operatorAverageRatings[operator.id])))">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                </div>
 
             <router-link :to="{
                 name: 'detail', params: { id: operator.id }
@@ -293,5 +298,11 @@ export default {
     width: 30%;
     object-fit: cover;
     object-position: center;
+}
+.stelline{
+    display: flex;
+    justify-content: center;
+    color: violet;
+    margin: 0.6em;
 }
 </style>
