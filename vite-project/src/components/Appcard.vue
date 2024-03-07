@@ -212,6 +212,13 @@ export default {
   margin: 0.6em;
 }
 
+#selettore{
+  width: 20%;
+  height: 40%;
+  border-radius: 3%;
+}
+s
+
 .subtitle {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
@@ -300,7 +307,6 @@ export default {
   -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 2px 15px 16px rgba(0, 0, 0, 0);
   box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 2px 15px 16px rgba(0, 0, 0, 0);
 }
-.h4{}
 .stelline{
     display: flex;
     justify-content: center;
