@@ -161,7 +161,7 @@ export default {
             <router-link :to="{
                 name: 'detail', params: { id: operator.id }
             }">
-                <p>dettaglio</p>
+                <button class="btn">Visualizza</button>
             </router-link>
         </div>
     </section>
@@ -302,5 +302,26 @@ export default {
     justify-content: center;
     color: violet;
     margin: 0.6em;
+}
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #774caf;
+  color: white;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+.btn:active {
+  background-color: #3e8e41;
 }
 </style>
