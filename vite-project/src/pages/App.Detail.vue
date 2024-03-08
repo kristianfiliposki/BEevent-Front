@@ -183,6 +183,7 @@ textarea{
   display: flex;
   justify-content: space-around;
   align-items: center;
+  height: 28.2vh;
 }
 
 /* Stile per l'input email */
