@@ -10,19 +10,19 @@ export default {
       store,
       showTextarea: false,
       showTextarea2: false,
-      showButton:false,
-      showButton2:false,
+      showforms:false,
+      showforms2:false,
       votes : []
     };
   },
   methods: {
     createTextarea: function() {
       this.showTextarea = true;
-      this.showButton = true;
+      this.showforms = true;
     },
     createTextarea2: function() {
       this.showTextarea2 = true;
-      this.showButton2 = true;
+      this.showforms2 = true;
     },
     getVotes : function(){
       axios.get("http://127.0.0.1:8000/api/votes").then(risultato => {
@@ -73,14 +73,14 @@ export default {
   </div>
 
 <div class="textareacontainer">
-  <form action="http://127.0.0.1:8000/message" method="GET">
+  <form v-if="showforms" action="http://127.0.0.1:8000/message" method="GET">
     <input name="operator_id" type="hidden" v-model="operator.id">
     <textarea class="text" name="text" cols="50" rows="4" placeholder="Scrivi il tuo messaggio qui..."></textarea>
-    <input name="user_email" type="email" placeholder="Inserisci la tua email">
-    <input name="author" type="text" placeholder="Inserisci il tuo nome">
+    <input  name="user_email" type="email" placeholder="Inserisci la tua email">
+    <input  name="author" type="text" placeholder="Inserisci il tuo nome">
     <input type="submit" value="Invia">
   </form>
-  <form action="http://127.0.0.1:8000/review" method="GET">
+  <form v-if="showforms2" action="http://127.0.0.1:8000/review" method="GET">
     <input name="operator_id" type="hidden" v-model="operator.id">
     <select name="vote_id">
       <option v-for="vote in votes" :value="vote.id">{{ vote.vote }}</option>
