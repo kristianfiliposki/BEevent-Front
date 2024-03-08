@@ -16,13 +16,13 @@ export default {
     };
   },
   methods: {
-    createTextarea: function() {
-      this.showTextarea = true;
-      this.showforms = true;
+    toggleTextarea: function() {
+      this.showTextarea = !this.showTextarea; 
+      this.showforms = this.showTextarea;
     },
-    createTextarea2: function() {
-      this.showTextarea2 = true;
-      this.showforms2 = true;
+    toggleTextarea2: function() {
+      this.showTextarea2 = !this.showTextarea2;
+      this.showforms2 = this.showTextarea2; 
     },
     getVotes : function(){
       axios.get("http://127.0.0.1:8000/api/votes").then(risultato => {
@@ -63,12 +63,12 @@ export default {
 
   </div>
   <div class="btnCont">
-    <button class="btn" @click="createTextarea">
-      <H3>CONTATTA</H3>
+    <button class="btn" @click="toggleTextarea">
+      <h3>{{ showTextarea ? 'ANNULLA' : 'CONTATTA' }}</h3>
     </button>
 
-    <button class="btn" @click="createTextarea2">
-      <H3>SCRIVI UNA RECENSIONE</H3>
+    <button class="btn" @click="toggleTextarea2">
+      <h3>{{ showTextarea2 ? 'ANNULLA' : 'SCRIVI UNA RECENSIONE' }}</h3>
     </button>
   </div>
 
