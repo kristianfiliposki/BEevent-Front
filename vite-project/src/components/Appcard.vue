@@ -442,6 +442,20 @@ s
   background-color: rgba(0, 0, 0, 0.121);
 
 }
+
+#welcome {
+  margin-top: 2em;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: sticky;
+  color: white;
+  font-size: 1.2em;
+}
+
 .bebas-neue-regular {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
@@ -461,6 +475,7 @@ s
   width: 28%;
   height: 40%;
   border-radius: 3%;
+  margin: 1em;
 }
 
 }
