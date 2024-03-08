@@ -14,14 +14,14 @@ export default {
     </div>
     <div class="link-rights">
       <a href="http://localhost:8000/register">Registrati/log in</a>
-      <a href=""><i class="fa-solid fa-plus fa-lg fa-fw"></i> Aggiungi operatore</a>
       <a href="/ricerca">ricerca avanzata</a>
-      <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-       <i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i>
-      </a>
       <a href="/">Homepage</a>
+      <form id="logout-form" action="" method="POST" class="d-none">
+        <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+         <i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i>
+        </a>
+      </form>
     </div>
-    <form id="logout-form" action="" method="POST" class="d-none"></form>
 
 
   </header>
