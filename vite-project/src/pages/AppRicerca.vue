@@ -153,7 +153,7 @@ export default {
             <h5>tariffa: {{ operator.engagement_price }}</h5>
             <h3>Average Rating</h3>
             <div class="stelline">
-                <div v-for=" in  (Math.round((operatorAverageRatings[operator.id])))">
+                <div v-if="operatorAverageRatings[operator.id] " v-for="index in Math.round((operatorAverageRatings[operator.id]))" :key="index">
                     <i class="fa-solid fa-star"></i>
                 </div>
             </div>
