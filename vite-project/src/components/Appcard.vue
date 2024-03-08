@@ -333,4 +333,64 @@ s
 .btn:active {
   background-color: #3e8e41;
 }
+/*media query cards*/
+@media only screen and (max-width: 768px){
+  .card-css {
+  width: calc((100% / 2));
+  background-color: rgb(165, 164, 164);
+  border-radius: 15px;
+  margin: 4% 2% 0% 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.121);
+}
+#fakeBody {
+  width: 100vw;
+  height: 70vh;
+  overflow-y: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 2em;
+  flex-direction: column;
+}
+.card-css2 {
+  width: 23%;
+  aspect-ratio: 1;
+  border-radius: 15px;
+  margin: 9px 5%;
+  text-align: center;
+  padding: 0.2rem;
+
+  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+
+
+  background-color: rgba(0, 0, 0, 0.121);
+
+}
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  margin: 0.6em;
+}
+.subtitle {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+
+  margin: 0.6em;
+}
+#selettore{
+  width: 28%;
+  height: 40%;
+  border-radius: 3%;
+}
+}
 </style>

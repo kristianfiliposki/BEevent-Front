@@ -68,4 +68,7 @@ export default {
     font-size: 0.7rem;
   }
 }
+@media only screen and (max-width: 468px){
+  
+}
 </style>
