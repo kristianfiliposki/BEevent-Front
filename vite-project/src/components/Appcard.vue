@@ -171,7 +171,7 @@ export default {
       <router-link :to="{
         name: 'detail', params: { id: operator.id }
       }">
-       <button class="btn">Visualizza</button>s
+       <button class="btn">Visualizza</button>
       </router-link>
 
       <!-- Trova la corrispondente specializzazione per l'operatore -->
