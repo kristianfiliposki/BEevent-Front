@@ -181,10 +181,10 @@ export default {
 
       <!-- Aggiunta per visualizzare l'ID dell'operatore se sponsorizzato -->
       <div v-if="isOperatorSponsored(operator.id)">
-        <p v-for="sponsorship in store.operator_sponsorships.filter(s => s.operator_id === operator.id)"
+        <!-- <p v-for="sponsorship in store.operator_sponsorships.filter(s => s.operator_id === operator.id)"
           :key="sponsorship.id">
           Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
-        </p>
+        </p> -->
       </div>
     </div>
   </section>
@@ -339,12 +339,12 @@ s
   width: calc((100% / 2));
   background-color: rgb(165, 164, 164);
   border-radius: 15px;
-  margin: 4% 2% 0% 0%;
+  margin: 5% 2% 0% 0%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  height: 100%;
+  height: 79%;
   background-color: rgba(0, 0, 0, 0.121);
 }
 #fakeBody {
@@ -395,15 +395,15 @@ s
 }
 @media only screen and (max-width: 468px){
   .card-css {
-  width: calc((100% / 2));
+  width: calc((100% / 1));
   background-color: rgb(165, 164, 164);
   border-radius: 15px;
-  margin: 4% 2% 0% 0%;
+  margin: 5% 5% 0% 0%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  height: 100%;
+  height: 84%;
   background-color: rgba(0, 0, 0, 0.121);
 }
 #fakeBody {
@@ -435,7 +435,7 @@ s
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 2rem;
+  font-size: 1.4rem;
   margin: 0.6em;
 }
 .subtitle {
@@ -447,7 +447,7 @@ s
   margin: 0.6em;
 }
 #selettore{
-  width: 28%;
+  width: 60%;
   height: 40%;
   border-radius: 3%;
 }
