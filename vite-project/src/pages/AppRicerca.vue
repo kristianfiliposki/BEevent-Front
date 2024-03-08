@@ -153,7 +153,7 @@ export default {
             <h5>tariffa: {{ operator.engagement_price }}</h5>
             <h3>Average Rating</h3>
             <div class="stelline">
-                <div v-if="operatorAverageRatings[operator.id] " v-for="index in Math.round((operatorAverageRatings[operator.id]))" :key="index">
+                <div v-for=" in  (Math.round((operatorAverageRatings[operator.id])))">
                     <i class="fa-solid fa-star"></i>
                 </div>
             </div>
@@ -171,12 +171,12 @@ export default {
   
 <style scoped>
 #welcome {
-    margin-top: 2em;
+    margin:0.4em 2em;
     width: 100%;
     height: 10vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
     position: sticky;
     color: white;
     font-size: 1.2em;
@@ -214,7 +214,9 @@ export default {
     align-items: center;
     justify-content: center;
 }
-
+.inputName{
+    width: 70%;
+}
 .inputDiv {
     width: 15%;
     height: 3rem;
@@ -222,6 +224,11 @@ export default {
 
 .inputDiv h4 {
     color: #FD129E;
+    max-height:2em ;
+}
+
+h4{
+    height: 8vh;
 }
 
 .inputNum {
@@ -272,12 +279,12 @@ export default {
 .wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: center;
 }
 
 .card-css {
-    width: 15%;
-    aspect-ratio: 1 1;
+    min-height: 45vh;
+    width: calc(100% / 5);
     border-radius: 15px;
     margin: 1rem 2%;
     text-align: center;
@@ -324,4 +331,89 @@ export default {
 .btn:active {
   background-color: #3e8e41;
 }
+
+@media screen and (max-width: 768px) {
+  
+    #welcome {
+    margin:0.4em 2em;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    color: white;
+    font-size: 1.2em;
+}
+    .card-css {
+    width: calc(100% / 3);
+    border-radius: 15px;
+    margin: 1rem 2%;
+    text-align: center;
+    padding: 0.2rem;
+
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+
+
+    background-color: rgba(0, 0, 0, 0.121);
+
+    }
+    .filterWrap {
+    background-color: #090021;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    }
+    .inputDiv[data-v-0b7fbc46] {
+    width: calc(100% / 7);
+    height: 3rem;
+    margin: 4% 7%;
+}
+
+}
+
+@media screen and (max-width: 480px) {
+  
+  #welcome {
+  margin:0.4em 2em;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  color: white;
+  font-size: 1.2em;
+}
+  .card-css {
+  width: calc(100% - 1% );
+  border-radius: 15px;
+  margin: 2%;
+  text-align: center;
+  padding: 0.2rem;
+
+  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+
+
+  background-color: rgba(0, 0, 0, 0.121);
+
+  }
+  .filterWrap {
+  background-color: #090021;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  }
+  .inputDiv[data-v-0b7fbc46] {
+  width: calc(100% / 7);
+  height: 3rem;
+  margin: 4% 7%;
+}
+
+}
+
 </style>
