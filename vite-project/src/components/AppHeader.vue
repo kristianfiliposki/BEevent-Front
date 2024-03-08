@@ -75,8 +75,7 @@ export default {
     font-size: 0.7rem;
   }
 }
-@media only screen and (max-width: 468px){
-  @media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   
   #navbar img {
     width: 35%;
@@ -87,5 +86,19 @@ export default {
     font-size: 0.5rem;
   }
 }
+@media only screen and (max-width: 468px){
+  .link-rights{
+  width: 40%;
+  height: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+}
+
+  .link-rights a{
+    margin: 2rem;
+    font-size: 2rem;
+  }
 }
 </style>
