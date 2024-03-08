@@ -114,7 +114,9 @@ export default {
     </div>
   </div>
   <!-- Carosello per gli operatori con sponsorizzazioni attive -->
-  <h2 class="subtitle">Oppure dai un occhiata ai nostri talenti preferiti</h2>
+  <div class="title">
+    <h2 class="subtitle">Oppure dai un occhiata ai nostri talenti preferiti</h2>
+  </div>
 
   <section class="wrapper2" ref="activeSponsorships">
 
@@ -192,6 +194,15 @@ export default {
 
 
 <style scoped>
+.title{
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+  color: white;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 #welcome {
   margin-top: 2em;
   width: 100%;
