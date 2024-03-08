@@ -69,6 +69,17 @@ export default {
   }
 }
 @media only screen and (max-width: 468px){
+  @media only screen and (max-width: 768px) {
   
+  #navbar img {
+    width: 35%;
+    margin-bottom: 10px;
+  }
+  
+  #navbar a {
+    margin: 0% 4% 0% 0%;
+    font-size: 0.7rem;
+  }
+}
 }
 </style>
