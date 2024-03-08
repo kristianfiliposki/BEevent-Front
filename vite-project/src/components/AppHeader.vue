@@ -72,20 +72,10 @@ export default {
   
   #navbar a {
     margin: 0% 4% 0% 0%;
-    font-size: 0.7rem;
+    font-size: 1.2rem;
   }
 }
-@media only screen and (max-width: 768px) {
-  
-  #navbar img {
-    width: 35%;
-    margin-bottom: 10px;
-  }
-  
-  #navbar a {
-    font-size: 0.5rem;
-  }
-}
+
 @media only screen and (max-width: 468px){
   .link-rights{
   width: 40%;
@@ -98,7 +88,7 @@ export default {
 
   .link-rights a{
     margin: 2rem;
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 }
 </style>
