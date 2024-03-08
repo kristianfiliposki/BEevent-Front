@@ -7,16 +7,20 @@ export default {
 <template>
   <header id="navbar">
 
-    <router-link to="/">
-      <img src="/logo/Heavy planning logo.jpg" alt="img">
-    </router-link>
-    <a href="http://localhost:8000/register">Registrati/log in</a>
-    <a href=""><i class="fa-solid fa-plus fa-lg fa-fw"></i> Aggiungi operatore</a>
-    <a href="/ricerca">ricerca avanzata</a>
-    <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-     <i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i>
-    </a>
-    <a href="/">Homepage</a>
+    <div>
+      <router-link to="/">
+        <img src="/logo/Heavy planning logo.jpg" alt="img">
+      </router-link>
+    </div>
+    <div class="link-rights">
+      <a href="http://localhost:8000/register">Registrati/log in</a>
+      <a href=""><i class="fa-solid fa-plus fa-lg fa-fw"></i> Aggiungi operatore</a>
+      <a href="/ricerca">ricerca avanzata</a>
+      <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+       <i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i>
+      </a>
+      <a href="/">Homepage</a>
+    </div>
     <form id="logout-form" action="" method="POST" class="d-none"></form>
 
 
@@ -43,8 +47,11 @@ export default {
   font-family: sans-serif;
   color: #FD129E;
   text-decoration: none;
-  margin: 1% 1% 1% 0%;
-  font-size: 1.5em;
+  font-size: 1em;
+}
+
+.link-rights{
+  display: contents;
 }
 
 #navbar a:hover {
@@ -77,8 +84,7 @@ export default {
   }
   
   #navbar a {
-    margin: 0% 4% 0% 0%;
-    font-size: 0.7rem;
+    font-size: 0.5rem;
   }
 }
 }
