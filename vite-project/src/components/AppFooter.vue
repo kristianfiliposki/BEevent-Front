@@ -57,7 +57,7 @@ export default{
 }
 .container{
     background-color: #090021;
-    height: 8vh;
+    height: 10vh;
     color: azure;
     font-size: 1.3em;
 }

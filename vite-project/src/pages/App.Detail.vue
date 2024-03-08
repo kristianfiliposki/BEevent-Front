@@ -76,19 +76,19 @@ export default {
   <form v-if="showforms" action="http://127.0.0.1:8000/message" method="GET">
     <input name="operator_id" type="hidden" v-model="operator.id">
     <textarea class="text" name="text" cols="50" rows="4" placeholder="Scrivi il tuo messaggio qui..."></textarea>
-    <input class="inputShow"  name="author" type="text" placeholder="Inserisci il tuo nome">
-    <input class="inputShow"  name="user_email" type="email" placeholder="Inserisci la tua email">
-    <input  id="invisiButton" type="submit" value="Invia">
+    <input  name="user_email" type="email" placeholder="Inserisci la tua email">
+    <input  name="author" type="text" placeholder="Inserisci il tuo nome">
+    <input type="submit" value="Invia">
   </form>
   <form v-if="showforms2" action="http://127.0.0.1:8000/review" method="GET">
     <input name="operator_id" type="hidden" v-model="operator.id">
-    <textarea class="text2" name="comment" cols="50" rows="4" placeholder="Scrivi la tua recensione qui..."></textarea>
-    <input class="inputShow" name="author" type="text" placeholder="Inserisci il tuo nome"> 
-    <input class="inputShow" name="user_email" type="email" placeholder="Inserisci la tua email">
-    <select class="inputShow" name="vote_id">
+    <select name="vote_id">
       <option v-for="vote in votes" :value="vote.id">{{ vote.vote }}</option>
     </select>
-    <input id="invisiButton2" type="submit" value="Invia">
+    <textarea class="text2" name="comment" cols="50" rows="4" placeholder="Scrivi la tua recensione qui..."></textarea>
+    <input name="author" type="text" placeholder="Inserisci il tuo nome">
+    <input name="user_email" type="email" placeholder="Inserisci la tua email">
+    <input type="submit" value="Invia">
   </form>
 </div>
 
@@ -158,8 +158,8 @@ export default {
   background-color: #3e8e41;
 }
 .text{
-  width:25rem;
-  height:5rem;
+  width:32rem;
+  height:15rem;
   margin-left: 5%;
   border: 1px solid  rgba(255, 255, 255, 0.582);
   background-color: rgba(255, 255, 255, 0.582) ;
@@ -169,8 +169,8 @@ textarea{
 
 }
 .text2{
-  width:25rem;
-  height:5rem;
+  width:32rem;
+  height:15rem;
   margin-left: 5%;
   border: 1px solid  rgba(255, 255, 255, 0.582);
   background-color: rgba(255, 255, 255, 0.582) ;
@@ -185,77 +185,7 @@ textarea{
   align-items: center;
 }
 
-/* Stile per l'input email */
-.inputShow {
-    width: 300px;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 20px;
-    border: 2px solid #ccc;
-    outline: none;
-    transition: border-color 0.3s;
-    margin-left: 4%;
-    
-  }
 
-  /* Stile per l'effetto al passaggio del mouse */
-  .inputShow:hover,
-  .inputShow:focus {
-    border-color: #6c5ce7; /* Cambia il colore del bordo al passaggio del mouse o al focus */
-  }
 
-  /* Stile per l'effetto di transizione */
-  .inputShow:focus {
-    box-shadow: 0 0 5px rgba(108, 92, 231, 0.5); /* Aggiunge una leggera ombra al focus */
-  }
-  form{
-    display: flex;
-    flex-direction: column;
-  }
-  #invisiButton {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 5px;
-  background-color: #774caf;
-  color: white;
-  border: none;
-  width: 20%;
-  transition: background-color 0.3s;
-  margin-left: 86%;
-}
 
-#invisiButton:hover {
-  background-color: #45a049;
-}
-
-#invisiButton:active {
-  background-color: #3e8e41;
-}
-#invisiButton2 {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 5px;
-  background-color: #774caf;
-  color: white;
-  border: none;
-  width: 20%;
-  margin-left: 86%;
-  transition: background-color 0.3s;
-}
-
-#invisiButton2:hover {
-  background-color: #45a049;
-}
-
-#invisiButton2:active {
-  background-color: #3e8e41;
-}
 </style>
