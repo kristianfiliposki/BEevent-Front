@@ -1,14 +1,16 @@
-<script>
+<script >
 import { store } from './store.js';
 import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import AppPresentation from './components/AppPresentation.vue';
+import AppFooter from './components/AppFooter.vue';
+
 
 export default {
   components: {
     AppHeader,
     AppPresentation,
-
+    AppFooter,
   },
   data() {
     return {
@@ -41,6 +43,7 @@ export default {
 <template>
   <AppHeader />
   <router-view></router-view>
+  <AppFooter/>
 </template>
 
 <style scoped>
