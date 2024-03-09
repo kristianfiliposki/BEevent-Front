@@ -3,6 +3,8 @@ import AppHomepage from './pages/AppHomepage.vue';
 import AppDashboard from './pages/AppDashboard.vue';
 import AppRicerca from './pages/AppRicerca.vue';
 import AppDetail from './pages/App.Detail.vue';
+import AppWelcome from './pages/AppWelcome.vue';
+
 
 const router = createRouter({
     history: createWebHistory(),
@@ -13,9 +15,9 @@ const router = createRouter({
 
     },
     {
-        path: '/dashboard',
-        name: 'dashboard',
-        component: AppDashboard
+        path: '/welcome',
+        name: 'welcome',
+        component: AppWelcome
     },
     {
         path: '/ricerca',
@@ -24,11 +26,11 @@ const router = createRouter({
         props: (route) => ({ specialization: route.query.specialization }),
     },
     {
-        path:'/detail/:id',
+        path: '/detail/:id',
         name: 'detail',
         component: AppDetail,
         props: true
-        }
+    }
     ]
 
 
