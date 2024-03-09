@@ -7,18 +7,20 @@ export default {
 <template>
   <header id="navbar">
 
-    <div>
+    <div class="logoWrap">
       <router-link to="/">
-        <img src="/logo/Heavy planning logo.jpg" alt="img">
+        <img class="logo" src="/logo/Heavy planning logo.jpg" alt="img">
       </router-link>
     </div>
     <div class="link-rights">
+      <a href="/">Homepage</a>
+      <a href="/welcome">Chi siamo</a>
       <a href="http://localhost:8000/register">Registrati/log in</a>
       <a href="/ricerca">ricerca avanzata</a>
-      <a href="/">Homepage</a>
+
       <form id="logout-form" action="" method="POST" class="d-none">
         <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-         <i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i>
+          <i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i>
         </a>
       </form>
     </div>
@@ -39,9 +41,22 @@ export default {
 
 }
 
-#navbar img {
-  width: 10%;
+.logoWrap {
+  width: 20%;
+  height: 100%;
+
 }
+
+.logo {
+
+  height: 100%;
+  padding: 0.4rem;
+  aspect-ratio: 1 1;
+
+
+}
+
+
 
 #navbar a {
   font-family: sans-serif;
@@ -50,8 +65,11 @@ export default {
   font-size: 1em;
 }
 
-.link-rights{
-  display: contents;
+.link-rights {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 #navbar a:hover {
@@ -62,31 +80,54 @@ export default {
 #navbar i {
   color: #FD129E;
 }
+
 /* Media queries */
 @media only screen and (max-width: 768px) {
-  
-  #navbar img {
-    width: 35%;
-    margin-bottom: 10px;
+
+  .logoWrap {
+    width: 20%;
+    height: 80%;
+
   }
-  
+
+
+
+
+
+  .link-rights {
+    width: 70%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+  }
+
+
   #navbar a {
     margin: 0% 4% 0% 0%;
     font-size: 1.2rem;
   }
 }
 
-@media only screen and (max-width: 468px){
-  .link-rights{
-  width: 40%;
-  height: 50%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+@media only screen and (max-width: 468px) {
+  .link-rights {
+    width: 70%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-end;
 
-}
 
-  .link-rights a{
+  }
+
+  #navbar {
+    min-height: 10rem;
+  }
+
+  .link-rights a {
     margin: 2rem;
     font-size: 1.6rem;
   }
