@@ -155,40 +155,44 @@ export default {
     <!-- Utilizza filteredOperators solo quando è stata selezionata una specializzazione -->
     <div class="card-css" v-for="operator in (selectedSpecialization ? filteredOperators : store.operators)"
       :key="operator.id">
-      <h3>{{ operator.name }}</h3>
+
       <img :src="'http://127.0.0.1:8000/storage/' + operator.file_path" alt="img" class="img-operator">
-      <h4>{{ operator.description }}</h4>
-      <h5>{{ operator.engagement_price }}</h5>
-      <h5>{{ operator.phone }}</h5>
-      <h3>Average Rating</h3>
-      <div class="stelline">
-        <div v-if="operatorAverageRatings[operator.id]" v-for="index in Math.round((operatorAverageRatings[operator.id]))"
-          :key="index">
-          <i class="fa-solid fa-star"></i>
+      <div class="carouselBottom">
+        <h3>{{ operator.name }}</h3>
+        <h4>{{ operator.description }}</h4>
+        <h5>{{ operator.engagement_price }}</h5>
+
+
+        <div class="stelline">
+          <div v-if="operatorAverageRatings[operator.id]"
+            v-for="index in Math.round((operatorAverageRatings[operator.id]))" :key="index">
+            <i class="fa-solid fa-star"></i>
+          </div>
         </div>
-      </div>
 
 
 
 
 
-      <router-link :to="{
-        name: 'detail', params: { id: operator.id }
-      }">
-        <button class="btn">Visualizza</button>
-      </router-link>
+        <router-link :to="{
+          name: 'detail', params: { id: operator.id }
+        }">
+          <button class="btn">Visualizza</button>
+        </router-link>
 
-      <!-- Trova la corrispondente specializzazione per l'operatore -->
-      <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
-        <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
-      </div>
-
-      <!-- Aggiunta per visualizzare l'ID dell'operatore se sponsorizzato -->
-      <div v-if="isOperatorSponsored(operator.id)">
-        <!-- <p v-for="sponsorship in store.operator_sponsorships.filter(s => s.operator_id === operator.id)"
+        <!-- Trova la corrispondente specializzazione per l'operatore -->
+        <div class="specWrap">
+          <div v-for="operatorSpecialization in getOperatorSpecializations(operator.id)" :key="operatorSpecialization.id">
+            <p ref="specializzazione_operatore">{{ operatorSpecialization.specialization.name }}</p>
+          </div>
+        </div>
+        <!-- Aggiunta per visualizzare l'ID dell'operatore se sponsorizzato -->
+        <div v-if="isOperatorSponsored(operator.id)">
+          <!-- <p v-for="sponsorship in store.operator_sponsorships.filter(s => s.operator_id === operator.id)"
           :key="sponsorship.id">
           Sponsorizzazione: {{ sponsorship.id }}, {{ sponsorship.start_date }}, {{ sponsorship.end_date }}
         </p> -->
+        </div>
       </div>
     </div>
   </section>
@@ -251,12 +255,12 @@ s .subtitle {
 
 #fakeBody {
   width: 100%;
-  height: 60vh;
+  height: 62vh;
   overflow-y: auto;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 2em;
+  margin: 2rem 0;
   flex-direction: column;
 }
 
@@ -269,8 +273,18 @@ s .subtitle {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 96%;
+  height: 60vh;
   background-color: rgba(255, 255, 255, 0.413);
+  overflow: auto;
+}
+
+.specWrap {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0.3rem;
+
+
 }
 
 #card-css h3 {
@@ -278,16 +292,18 @@ s .subtitle {
 }
 
 .img-operator {
-  min-height: 60%;
+  height: 60%;
   width: 100%;
   object-fit: cover;
   object-position: center;
+  border-radius: 15px 15px 0 0;
 }
 
-.wrapper {
-  display: flex;
-  flex-wrap: wrap;
+.carouselBottom {
+  text-align: center;
+  height: 40%;
 }
+
 
 .wrapper2 {
   display: flex;
