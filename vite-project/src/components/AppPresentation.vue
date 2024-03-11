@@ -82,7 +82,7 @@ h1 {
 .jumbo {
   background-image: url('https://www.bluestoneedge.com/wp-content/uploads/2021/02/Fotolia_165796723_Subscription_Monthly_M.jpg');
   height: 40vh;
-  width: 100vw;
+  width: 100%;
   margin: 0 auto;
   border-radius: 0.4rem;
 
