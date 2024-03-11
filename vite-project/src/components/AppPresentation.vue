@@ -45,6 +45,18 @@ export default {
     <p class="centro-jumbo">Riempi il palco!</p>
 
   </div>
+  <div class="preFooter">
+    <h3>Sito web creato da:</h3>
+    <div class="footlinks">
+      <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile">Kristian
+        Filiposki</a>
+      <a href="https://www.linkedin.com/in/marco-percolla-a358ab2b9/">Marco Percolla</a>
+      <a href="https://www.linkedin.com/in/francesco-bonanno-78aa692b9/">Francesco Bonanno</a>
+      <a href="https://www.linkedin.com/in/lorenzo-monteforte-2846702b5/">Lorenzo Monteforte</a>
+      <a href="https://www.linkedin.com/in/riccardo-rocco-497251200/">Riccardo Rocco</a>
+    </div>
+
+  </div>
 </template>
 <style scoped>
 .presentazione {
@@ -55,11 +67,24 @@ export default {
   color: #FD129E;
   padding-top: 3rem;
 
+
 }
 
 h1 {
   color: #F6FB01;
   font-size: 2.3rem;
+  font-family: "Bebas Neue", sans-serif;
+}
+
+h3 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+h5 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1rem;
 }
 
 .presentationCopy {
@@ -81,7 +106,7 @@ h1 {
 
 .jumbo {
   background-image: url('https://www.bluestoneedge.com/wp-content/uploads/2021/02/Fotolia_165796723_Subscription_Monthly_M.jpg');
-  height: 40vh;
+  height: 83vh;
   width: 100%;
   margin: 0 auto;
 
@@ -92,6 +117,7 @@ h1 {
   background-position: bottom;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-position-y: -3rem;
 
 
   display: flex;
@@ -106,6 +132,7 @@ h1 {
 .centro-jumbo {
   color: #F6FB01;
   font-size: 5rem;
+  font-family: "Bebas Neue", sans-serif;
 }
 
 .banner-container {
@@ -123,7 +150,7 @@ h1 {
 
 .banner {
   width: 30%;
-  height: 14rem;
+  min-height: 14rem;
   background-color: #000000b6;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -133,10 +160,34 @@ h1 {
   text-align: center;
 }
 
+.preFooter {
+  height: 8vh;
+  text-align: center;
+  background-color: #090021;
+
+  color: #FD129E;
+
+
+
+}
+
+.footlinks {
+  height: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footlinks a {
+  text-decoration: none;
+  color: white;
+  font-family: "Bebas Neue", sans-serif;
+}
+
 /*media query cards*/
 @media only screen and (max-width: 968px) {
   .presentazione {
-    height: fit-content;
+    height: 80vh;
   }
 
   h1 {
@@ -152,20 +203,30 @@ h1 {
 
   .banner-container {
     width: 95%;
+    height: 60%;
     margin: 0 auto;
     padding: 0.5rem;
   }
 
+
   .banner {
-    width: 30%;
-    height: 14rem;
+    width: 80%;
+    min-height: fit-content;
+
     background-color: #000000b6;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     margin: 2rem 0;
-    padding: 0.3rem;
+    padding: 1.5rem;
     border-radius: 0.6rem;
     text-align: center;
+  }
+
+  .jumbo {
+    height: 80vh;
+    background-position-y: 1rem;
+    background-size: cover;
+
   }
 }
 
