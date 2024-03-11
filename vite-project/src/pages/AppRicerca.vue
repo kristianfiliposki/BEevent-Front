@@ -74,6 +74,24 @@ export default {
             console.log('Operator Average Ratings:', operatorAverageRatings);
             return operatorAverageRatings;
         },
+        sortedOperators() {
+          const operators = this.filteredOperators;
+
+          return operators.sort((a, b) => {
+            const isASponsored = this.isOperatorSponsored(a.id);
+            const isBSponsored = this.isOperatorSponsored(b.id);
+
+            if (isASponsored && !isBSponsored) {
+              return -1;
+            } else if (!isASponsored && isBSponsored) {
+              return 1;
+            } else {
+              // Se entrambi sponsorizzati o entrambi non sponsorizzati, mantieni l'ordine originale
+              return 0;
+            }
+          });
+        },
+
     },
     methods: {
         getOperatorSpecializations(operatorId) {
@@ -97,6 +115,35 @@ export default {
                     },
                 });
             }
+        },
+                isOperatorSponsored(operatorId) {
+            if (this.store.sponsoredOperators && Array.isArray(this.store.sponsoredOperators)) {
+                console.log('Sponsored Operators:', this.store.sponsoredOperators);
+                return this.store.sponsoredOperators.includes(operatorId);
+            } else {
+                console.error('this.store.sponsoredOperators is not defined or is not an array.');
+                console.log('this.store.sponsoredOperators:', this.store.sponsoredOperators);
+                return false;
+            }
+        },
+        /* generatrici di sponzorizzate */
+        isOperatorSponsored(operatorId) {
+          const isSponsored = this.store.operator_sponsorships.some(sponsorship => sponsorship.operator_id === operatorId);
+          console.log(`Operatore ${operatorId} sponsorizzato: ${isSponsored}`);
+          return isSponsored;
+        },
+        activeSponsorships(operatorId) {
+          const sponsorships = this.store.operator_sponsorships.filter(s => s.operator_id === operatorId && this.isntSponsorshipExpired(s));
+          console.log(`Operatore ${operatorId} ha sponsorizzazioni attive: ${sponsorships.length > 0}`);
+          return sponsorships;
+        },
+        isntSponsorshipExpired(sponsorship) {
+          const currentDateTime = moment();
+          const startDate = moment(sponsorship.start_date, 'YYYY-MM-DD HH:mm:ss');
+          const endDate = moment(sponsorship.end_date, 'YYYY-MM-DD HH:mm:ss');
+          const isExpired = currentDateTime.isBetween(startDate, endDate);
+          console.log(`Sponsorizzazione ${sponsorship.id} è scaduta: ${!isExpired}`);
+          return isExpired;
         },
     },
 
@@ -143,33 +190,60 @@ export default {
 
 
 
-    <!-- Carosello per tutti gli operatori -->
-    <section id="fakeBody" class="wrapper" ref="allOperators">
-        <div class="card-css" v-for="operator in filteredOperators" :key="operator.id">
-            <!-- ... Existing card content ... -->
-            <h3>{{ operator.name }}</h3>
-            <img :src="'http://127.0.0.1:8000/storage/' + operator.file_path" alt="img" class="img-operator">
-            <h4>{{ operator.description }}</h4>
-            <h5>tariffa: {{ operator.engagement_price }}</h5>
-            <h3>Average Rating</h3>
-            <div class="stelline">
-                <div v-for=" in  (Math.round((operatorAverageRatings[operator.id])))">
-                    <i class="fa-solid fa-star"></i>
-                </div>
-            </div>
+<!-- Carosello per tutti gli operatori -->
+<section id="fakeBody" class="wrapper" ref="allOperators">
+  <div v-for="operator in sortedOperators" :key="operator.id" :class="{ 'card-css': true, 'sponsored': isOperatorSponsored(operator.id) }">
+    <!-- ... Existing card content ... -->
+    <h3>{{ operator.name }}</h3>
+    <img :src="'http://127.0.0.1:8000/storage/' + operator.file_path" alt="img" class="img-operator">
+    <h4>{{ operator.description }}</h4>
+    <h5>tariffa: {{ operator.engagement_price }}</h5>
+    <h3>Average Rating</h3>
+    <div class="stelline">
+      <div v-for=" in  (Math.round((operatorAverageRatings[operator.id])))">
+        <i class="fa-solid fa-star"></i>
+      </div>
+    </div>
 
-            <router-link :to="{
-                name: 'detail', params: { id: operator.id }
-            }">
-                <button class="btn">Visualizza</button>
-            </router-link>
-        </div>
-    </section>
+    <!-- Aggiunta del testo o dell'icona per indicare se è sponsorizzato -->
+    <div v-if="isOperatorSponsored(operator.id)" class="sponsored-text">
+      <p>Sponsorizzato</p>
+    </div>
+
+    <router-link :to="{ name: 'detail', params: { id: operator.id } }">
+      <button class="btn">Visualizza</button>
+    </router-link>
+  </div>
+</section>
 </template>
   
   
   
 <style scoped>
+.sponsored {
+  /* Aggiungi qui gli stili per rendere gli operatori sponsorizzati dorati */
+  background-color: gold; /* Cambia questo con il tuo stile desiderato */
+  border: 2px solid gold; /* Aggiunto per rendere il bordo dorato */
+}
+
+.card-css {
+  /* Altri stili rimangono invariati */
+  min-height: 73vh;
+  width: calc(100% / 4);
+  border-radius: 15px;
+  margin: 1rem 2%;
+  text-align: center;
+  padding: 0.2rem;
+  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+  background-color: rgba(0, 0, 0, 0.121);
+}
+
+.sponsored h3 {
+  color: gold; /* Cambia il colore del testo per le carte sponsorizzate */
+}
+
+
 #welcome {
     margin:0.4em 2em;
     width: 100%;
