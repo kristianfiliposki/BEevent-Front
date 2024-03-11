@@ -49,6 +49,10 @@ export default{
     </div>
 </template>
 <style scoped>
+*{
+    font-size: 0.9em;
+}
+
 #name{
     display: flex;
     justify-content: center;
@@ -96,6 +100,23 @@ a{
 .social div{
     margin:0 0.3rem ;
 }
+
+/* Media queries */
+@media only screen and (max-width: 768px) {
+    *{
+        font-size: 0.8em;
+    }
+
+    .diritto{
+        display: flex;
+        flex-direction: column;
+    }
+    .diritto span{
+        margin: 0;
+    }
+
+}
+
 
 
 </style>
