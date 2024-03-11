@@ -237,9 +237,6 @@ export default {
   border-radius: 10% 10% 0 0;
 }
 
-.card-css2.sponsored .content-box {
-  color: gold; /* Colore del testo dorato */
-}
 
 .card-css2.sponsored .stelline {
   display: flex;
@@ -249,9 +246,7 @@ export default {
 
 .card-css2.sponsored button.btn {
   background-color: gold; /* Colore del pulsante dorato */
-  color: white; /* Colore del testo del pulsante */
 }
-
 
 
 .card-css2.sponsored {
@@ -269,16 +264,14 @@ export default {
 
 }
 
-.card-css2.sponsored::before {
-  content: '\2196'; /* Codice Unicode per l'angoletto in alto a sinistra */
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 24px;
-  color: #ffd700; /* Colore dorato */
+.card-css.sponsored {
+  position: relative;
+  background-color: rgba(255, 223, 0, 0.2);
+  border: 2px solid #ffd700; 
+  box-shadow: 0px 0px 20px 0px rgba(255, 223, 0, 0.5); 
 }
 
-.card-css2.sponsored .img-operatorS {
+.card-css.sponsored .img-operatorS {
   width: 100%;
   height: 60%;
   object-fit: cover;
@@ -286,38 +279,17 @@ export default {
   border-radius: 10% 10% 0 0;
 }
 
-.card-css2.sponsored .content-box {
-  color: #ffd700; /* Colore del testo dorato */
-}
 
-.card-css2.sponsored .stelline {
+.card-css.sponsored .stelline {
   display: flex;
   justify-content: center;
-  color: #ffd700;
+  color: gold;
 }
 
-.card-css2.sponsored button.btn {
-  background-color: #ffd700; /* Colore del pulsante dorato */
-  color: white; /* Colore del testo del pulsante */
+.card-css.sponsored button.btn {
+  background-color: gold; /* Colore del pulsante dorato */
 }
 
-
-.card-css.sponsored {
-  position: relative;
-  background-color: rgba(255, 223, 0, 0.2); /* Colore dorato di sfondo */
-  border: 2px solid #ffd700; /* Colore dorato del bordo */
-  box-shadow: 0px 0px 20px 0px rgba(255, 223, 0, 0.5); /* Effetto ombra dorato */
-}
-
-/* Aggiungi un angolo dorato in alto a sinistra */
-.card-css.sponsored::before {
-  content: '\2196'; /* Codice Unicode per l'angoletto in alto a sinistra */
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 24px;
-  color: #ffd700; /* Colore dorato */
-}
 
 .title {
   display: flex;
