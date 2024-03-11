@@ -44,6 +44,24 @@ export default {
       });
       return averageRatings;
     },
+    sortedOperators() {
+    const operators = this.selectedSpecialization ? this.filteredOperators : this.store.operators;
+
+    // Ordina gli operatori in modo che quelli sponsorizzati siano primi
+    return operators.sort((a, b) => {
+      const isASponsored = this.isOperatorSponsored(a.id);
+      const isBSponsored = this.isOperatorSponsored(b.id);
+
+      if (isASponsored && !isBSponsored) {
+        return -1;
+      } else if (!isASponsored && isBSponsored) {
+        return 1;
+      } else {
+        // Se entrambi sponsorizzati o entrambi non sponsorizzati, mantieni l'ordine originale
+        return 0;
+      }
+    });
+  },
   },
   methods: {
 
@@ -120,7 +138,7 @@ export default {
 
   <section class="wrapper2" ref="activeSponsorships">
 
-    <div class="card-css2" v-for="operator in operatorsWithActiveSponsorships" :key="operator.id">
+    <div class="card-css2 sponsored" v-for="operator in operatorsWithActiveSponsorships" :key="operator.id">
       <img :src="'http://127.0.0.1:8000/storage/' + operator.file_path" alt="img" class="img-operatorS">
       <div class="content-box">
         <h3>{{ operator.name }}</h3>
@@ -153,10 +171,7 @@ export default {
   <!-- Carosello per tutti gli operatori -->
   <section id="fakeBody" class="wrapper" ref="allOperators">
     <!-- Utilizza filteredOperators solo quando è stata selezionata una specializzazione -->
-    <div class="card-css" v-for="operator in (selectedSpecialization ? filteredOperators : store.operators)"
-      :key="operator.id">
-
-      <img :src="'http://127.0.0.1:8000/storage/' + operator.file_path" alt="img" class="img-operator">
+    <div v-for="operator in sortedOperators" :key="operator.id" :class="{ 'card-css': true, 'sponsored': isOperatorSponsored(operator.id) }">      <img :src="'http://127.0.0.1:8000/storage/' + operator.file_path" alt="img" class="img-operator">
       <div class="carouselBottom">
         <h3>{{ operator.name }}</h3>
         <h4>{{ operator.description }}</h4>
@@ -169,9 +184,6 @@ export default {
             <i class="fa-solid fa-star"></i>
           </div>
         </div>
-
-
-
 
 
         <router-link :to="{
@@ -200,6 +212,113 @@ export default {
 
 
 <style scoped>
+
+.card-css2.sponsored {
+  width: 15%;
+  aspect-ratio: 1;
+  border-radius: 15px;
+  margin: 9px 5%;
+  text-align: center;
+  padding: 0.2rem;
+
+  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+
+  background-color: gold; /* Colore dorato di sfondo */
+  border: 2px solid gold; /* Colore dorato del bordo */
+
+}
+
+.card-css2.sponsored .img-operatorS {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10% 10% 0 0;
+}
+
+.card-css2.sponsored .content-box {
+  color: gold; /* Colore del testo dorato */
+}
+
+.card-css2.sponsored .stelline {
+  display: flex;
+  justify-content: center;
+  color: gold;
+}
+
+.card-css2.sponsored button.btn {
+  background-color: gold; /* Colore del pulsante dorato */
+  color: white; /* Colore del testo del pulsante */
+}
+
+
+
+.card-css2.sponsored {
+  width: 15%;
+  aspect-ratio: 1;
+  border-radius: 15px;
+  margin: 9px 5%;
+  text-align: center;
+  padding: 0.2rem;
+
+  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+
+  background-color: rgba(255, 223, 0, 0.2); /* Colore dorato di sfondo */
+
+}
+
+.card-css2.sponsored::before {
+  content: '\2196'; /* Codice Unicode per l'angoletto in alto a sinistra */
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 24px;
+  color: #ffd700; /* Colore dorato */
+}
+
+.card-css2.sponsored .img-operatorS {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10% 10% 0 0;
+}
+
+.card-css2.sponsored .content-box {
+  color: #ffd700; /* Colore del testo dorato */
+}
+
+.card-css2.sponsored .stelline {
+  display: flex;
+  justify-content: center;
+  color: #ffd700;
+}
+
+.card-css2.sponsored button.btn {
+  background-color: #ffd700; /* Colore del pulsante dorato */
+  color: white; /* Colore del testo del pulsante */
+}
+
+
+.card-css.sponsored {
+  position: relative;
+  background-color: rgba(255, 223, 0, 0.2); /* Colore dorato di sfondo */
+  border: 2px solid #ffd700; /* Colore dorato del bordo */
+  box-shadow: 0px 0px 20px 0px rgba(255, 223, 0, 0.5); /* Effetto ombra dorato */
+}
+
+/* Aggiungi un angolo dorato in alto a sinistra */
+.card-css.sponsored::before {
+  content: '\2196'; /* Codice Unicode per l'angoletto in alto a sinistra */
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 24px;
+  color: #ffd700; /* Colore dorato */
+}
+
 .title {
   display: flex;
   justify-content: center;
