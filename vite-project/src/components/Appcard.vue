@@ -255,8 +255,8 @@ s .subtitle {
 
 #fakeBody {
   width: 100%;
-  height: 62vh;
-  overflow-y: auto;
+  height: 65vh;
+  overflow-y: scroll;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -275,7 +275,7 @@ s .subtitle {
   align-items: center;
   height: 60vh;
   background-color: rgba(255, 255, 255, 0.413);
-  overflow: auto;
+
 }
 
 .specWrap {
@@ -434,27 +434,28 @@ s .subtitle {
 
 @media only screen and (max-width: 468px) {
   .card-css {
-    width: calc((100% / 1));
-    background-color: rgb(165, 164, 164);
+    width: 98%;
+    background-color: rgba(38, 38, 38, 0.586);
     border-radius: 15px;
-    margin: 5% 5% 0% 0%;
+    margin: 5% auto;
+    padding: 0.1rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     height: 84%;
-    background-color: rgba(0, 0, 0, 0.121);
+    background-color: rgba(0, 0, 0, 0.318);
   }
 
   #fakeBody {
     width: 100vw;
-    height: 70vh;
-    overflow-y: auto;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    overflow: visible;
+
+    display: block;
+
+
     margin-top: 2em;
-    flex-direction: column;
+
   }
 
   .card-css2 {
