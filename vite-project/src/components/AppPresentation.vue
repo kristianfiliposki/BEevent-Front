@@ -228,6 +228,8 @@ h5 {
   color: #F6FB01;
   font-size: 5rem;
   font-family: "Bebas Neue", sans-serif;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .banner-container {
@@ -323,7 +325,92 @@ h5 {
     background-size: cover;
 
   }
+
+  .jumboLinks {
+    width: 70%;
+
+  }
+
+  .jumboLinks2 {
+    width: 90%;
+
+  }
+
+  .jumboLinks3 {
+    width: 60%;
+
+  }
 }
 
-@media only screen and (max-width: 468px) {}
+@media only screen and (max-width: 468px) {
+  .presentazione {
+    height: 140vh;
+  }
+
+  .banner {
+    width: 98%;
+  }
+
+  .jumboLinks {
+    width: 100%;
+
+  }
+
+  .jumboLinks2 {
+    width: 90%;
+
+  }
+
+  .jumboLinks3 {
+    width: 100%;
+
+  }
+
+  .specimg {
+    height: 4rem;
+
+  }
+
+  .centro-jumbo {
+    font-size: 4rem;
+  }
+}
+
+@media only screen and (max-width: 389px) {
+  .presentazione {
+    height: 180vh;
+  }
+
+  .banner {
+    width: 98%;
+  }
+
+  .jumboLinks {
+    width: 100%;
+
+  }
+
+  .jumboLinks2 {
+    width: 90%;
+
+  }
+
+  .jumboLinks3 {
+    width: 100%;
+
+  }
+
+  .specimg {
+    height: 4rem;
+
+  }
+
+  .centro-jumbo {
+    font-size: 4rem;
+  }
+
+  .preFooter {
+    height: 5rem;
+  }
+}
 </style>
