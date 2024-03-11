@@ -125,10 +125,11 @@ export default {
       <div class="content-box">
         <h3>{{ operator.name }}</h3>
         <h5>tariffa: {{ operator.engagement_price }} $</h5>
-        <h3>Average Rating</h3>
+
         <div class="stelline">
-          <div v-if="operatorAverageRatings[operator.id] " v-for="index in Math.round((operatorAverageRatings[operator.id]))" :key="index">
-              <i class="fa-solid fa-star"></i>
+          <div v-if="operatorAverageRatings[operator.id]"
+            v-for="index in Math.round((operatorAverageRatings[operator.id]))" :key="index">
+            <i class="fa-solid fa-star"></i>
           </div>
         </div>
 
@@ -161,11 +162,12 @@ export default {
       <h5>{{ operator.phone }}</h5>
       <h3>Average Rating</h3>
       <div class="stelline">
-          <div v-if="operatorAverageRatings[operator.id] " v-for="index in Math.round((operatorAverageRatings[operator.id]))" :key="index">
-              <i class="fa-solid fa-star"></i>
-          </div>
+        <div v-if="operatorAverageRatings[operator.id]" v-for="index in Math.round((operatorAverageRatings[operator.id]))"
+          :key="index">
+          <i class="fa-solid fa-star"></i>
+        </div>
       </div>
-      
+
 
 
 
@@ -173,7 +175,7 @@ export default {
       <router-link :to="{
         name: 'detail', params: { id: operator.id }
       }">
-       <button class="btn">Visualizza</button>
+        <button class="btn">Visualizza</button>
       </router-link>
 
       <!-- Trova la corrispondente specializzazione per l'operatore -->
@@ -194,7 +196,7 @@ export default {
 
 
 <style scoped>
-.title{
+.title {
   display: flex;
   justify-content: center;
   margin: 1em;
@@ -203,6 +205,7 @@ export default {
   font-weight: 400;
   font-style: normal;
 }
+
 #welcome {
   margin-top: 2em;
   width: 100%;
@@ -223,14 +226,13 @@ export default {
   margin: 0.6em;
 }
 
-#selettore{
+#selettore {
   width: 20%;
   height: 40%;
   border-radius: 3%;
 }
-s
 
-.subtitle {
+s .subtitle {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -260,7 +262,7 @@ s
 
 .card-css {
   width: calc((100% / 4));
-  background-color: rgb(165, 164, 164);
+
   border-radius: 15px;
   margin: 9px;
   display: flex;
@@ -268,7 +270,7 @@ s
   justify-content: center;
   align-items: center;
   height: 96%;
-  background-color: rgba(0, 0, 0, 0.121);
+  background-color: rgba(255, 255, 255, 0.413);
 }
 
 #card-css h3 {
@@ -300,29 +302,31 @@ s
   border-radius: 15px;
   margin: 9px 5%;
   text-align: center;
-  padding: 0.2rem;
+
 
   -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
   box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
 
 
-  background-color: rgba(0, 0, 0, 0.121);
+  background-color: rgba(255, 255, 255, 0.28);
 
 }
 
 .img-operatorS {
-  width: 50%;
+  width: 100%;
+  height: 60%;
   object-fit: cover;
-  object-position: center;
-  border-radius: 10%;
-  -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 2px 15px 16px rgba(0, 0, 0, 0);
-  box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 2px 15px 16px rgba(0, 0, 0, 0);
+  object-position: top;
+  border-radius: 10% 10% 0 0;
+
 }
-.stelline{
-    display: flex;
-    justify-content: center;
-    color: violet;
+
+.stelline {
+  display: flex;
+  justify-content: center;
+  color: violet;
 }
+
 .btn {
   display: inline-block;
   padding: 10px 20px;
@@ -335,6 +339,7 @@ s
   color: white;
   border: none;
   transition: background-color 0.3s;
+  margin: 0.5rem;
 }
 
 .btn:hover {
@@ -344,139 +349,150 @@ s
 .btn:active {
   background-color: #3e8e41;
 }
+
 /*media query cards*/
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
   .card-css {
-  width: calc((100% / 2));
-  background-color: rgb(165, 164, 164);
-  border-radius: 15px;
-  margin: 5% 2% 0% 0%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  height: 79%;
-  background-color: rgba(0, 0, 0, 0.121);
-}
-#fakeBody {
-  width: 100vw;
-  height: 70vh;
-  overflow-y: auto;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-top: 2em;
-  flex-direction: column;
-}
-.card-css2 {
-  width: 23%;
-  aspect-ratio: 1;
-  border-radius: 15px;
-  margin: 9px 5%;
-  text-align: center;
-  padding: 0.2rem;
+    width: calc((100% / 2));
+    background-color: rgb(165, 164, 164);
+    border-radius: 15px;
+    margin: 5% 2% 0% 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 79%;
+    background-color: rgba(0, 0, 0, 0.121);
+  }
 
-  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
-  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+  #fakeBody {
+    width: 100vw;
+    height: 70vh;
+    overflow-y: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 2em;
+    flex-direction: column;
+  }
+
+  .card-css2 {
+    width: 23%;
+    aspect-ratio: 1;
+    border-radius: 15px;
+    margin: 9px 5%;
+    text-align: center;
+    padding: 0.2rem;
+
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
 
 
-  background-color: rgba(0, 0, 0, 0.121);
+    background-color: rgba(0, 0, 0, 0.121);
 
-}
-.bebas-neue-regular {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 2rem;
-  margin: 0.6em;
-}
-.subtitle {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  text-align: center;
+  }
 
-  margin: 0.6em;
+  .bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+    margin: 0.6em;
+  }
+
+  .subtitle {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+
+    margin: 0.6em;
+  }
+
+  #selettore {
+    width: 28%;
+    height: 40%;
+    border-radius: 3%;
+  }
 }
-#selettore{
-  width: 28%;
-  height: 40%;
-  border-radius: 3%;
-}
-}
-@media only screen and (max-width: 468px){
+
+@media only screen and (max-width: 468px) {
   .card-css {
-  width: calc((100% / 1));
-  background-color: rgb(165, 164, 164);
-  border-radius: 15px;
-  margin: 5% 5% 0% 0%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  height: 84%;
-  background-color: rgba(0, 0, 0, 0.121);
-}
-#fakeBody {
-  width: 100vw;
-  height: 70vh;
-  overflow-y: auto;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-top: 2em;
-  flex-direction: column;
-}
-.card-css2 {
-  width: 40%;
-  aspect-ratio: 1;
-  border-radius: 15px;
-  margin: 4px 5%;
-  text-align: center;
-  padding: 0.5rem;
+    width: calc((100% / 1));
+    background-color: rgb(165, 164, 164);
+    border-radius: 15px;
+    margin: 5% 5% 0% 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 84%;
+    background-color: rgba(0, 0, 0, 0.121);
+  }
 
-  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
-  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+  #fakeBody {
+    width: 100vw;
+    height: 70vh;
+    overflow-y: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 2em;
+    flex-direction: column;
+  }
+
+  .card-css2 {
+    width: 40%;
+    aspect-ratio: 1;
+    border-radius: 15px;
+    margin: 4px 5%;
+    text-align: center;
+    padding: 0.5rem;
+
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
 
 
-  background-color: rgba(0, 0, 0, 0.121);
+    background-color: rgba(0, 0, 0, 0.121);
 
-}
+  }
 
-#welcome {
-  margin-top: 2em;
-  width: 100%;
-  height: 10vh;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: sticky;
-  color: white;
-  font-size: 1.2em;
-}
+  #welcome {
+    margin-top: 2em;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: sticky;
+    color: white;
+    font-size: 1.2em;
+  }
 
-.bebas-neue-regular {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 1.4rem;
-  margin: 0.6em;
-}
-.subtitle {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  text-align: center;
+  .bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.4rem;
+    margin: 0.6em;
+  }
 
-  margin: 0.6em;
-}
-#selettore{
-  width: 60%;
-  height: 40%;
-  border-radius: 3%;
-  margin: 1em;
-}
+  .subtitle {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+
+    margin: 0.6em;
+  }
+
+  #selettore {
+    width: 60%;
+    height: 40%;
+    border-radius: 3%;
+    margin: 1em;
+  }
 
 }
 </style>
