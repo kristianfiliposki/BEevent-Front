@@ -194,15 +194,15 @@ export default {
 <section id="fakeBody" class="wrapper" ref="allOperators">
   <div v-for="operator in sortedOperators" :key="operator.id" :class="{ 'card-css': true, 'sponsored': isOperatorSponsored(operator.id) }">
     <!-- ... Existing card content ... -->
-    <h3>{{ operator.name }}</h3>
     <img :src="'http://127.0.0.1:8000/storage/' + operator.file_path" alt="img" class="img-operator">
+    <h3>{{ operator.name }}</h3>
     <h4>{{ operator.description }}</h4>
     <h5>tariffa: {{ operator.engagement_price }}</h5>
     <h3>Average Rating</h3>
     <div class="stelline">
-      <div v-for=" in  (Math.round((operatorAverageRatings[operator.id])))">
-        <i class="fa-solid fa-star"></i>
-      </div>
+        <div v-for=" in  (Math.round((operatorAverageRatings[operator.id])))">
+            <i class="fa-solid fa-star"></i>
+        </div>
     </div>
 
     <router-link :to="{ name: 'detail', params: { id: operator.id } }">
@@ -234,9 +234,6 @@ export default {
   background-color: rgba(0, 0, 0, 0.121);
 }
 
-.sponsored h3 {
-  color: gold; /* Cambia il colore del testo per le carte sponsorizzate */
-}
 
 .card-css.sponsored .img-operatorS {
   width: 100%;

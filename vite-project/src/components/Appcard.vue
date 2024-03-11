@@ -250,7 +250,7 @@ export default {
 
 
 .card-css2.sponsored {
-  width: 15%;
+  width: calc(100% / 7);
   aspect-ratio: 1;
   border-radius: 15px;
   margin: 9px 5%;
@@ -440,7 +440,7 @@ s .subtitle {
 
 .btn {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 2%;
   font-size: 16px;
   text-align: center;
   text-decoration: none;
@@ -502,6 +502,23 @@ s .subtitle {
 
   }
 
+
+  .card-css2.sponsored {
+    width: calc(100% / 5);
+    aspect-ratio: 1;
+    border-radius: 15px;
+    margin: 9px 5%;
+    text-align: center;
+    padding: 0.2rem;
+
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+
+    background-color: rgba(255, 223, 0, 0.2); /* Colore dorato di sfondo */
+
+  }
+
+
   .bebas-neue-regular {
     font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
@@ -539,6 +556,22 @@ s .subtitle {
     align-items: center;
     height: fit-content;
     background-color: rgba(0, 0, 0, 0.318);
+  }
+
+
+  .card-css2.sponsored {
+    width: calc(100% / 3);
+    aspect-ratio: 1;
+    border-radius: 15px;
+    margin: 9px 5%;
+    text-align: center;
+    padding: 0.2rem;
+
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+
+    background-color: rgba(255, 223, 0, 0.2); /* Colore dorato di sfondo */
+
   }
 
   #fakeBody {
