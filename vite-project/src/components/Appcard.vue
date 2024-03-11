@@ -121,7 +121,7 @@ export default {
   <section class="wrapper2" ref="activeSponsorships">
 
     <div class="card-css2" v-for="operator in operatorsWithActiveSponsorships" :key="operator.id">
-      <img :src="'/public/img/' + operator.filename" alt="img" class="img-operatorS">
+      <img :src="'http://127.0.0.1:8000/storage/' + operator.file_path" alt="img" class="img-operatorS">
       <div class="content-box">
         <h3>{{ operator.name }}</h3>
         <h5>tariffa: {{ operator.engagement_price }} $</h5>
@@ -156,7 +156,7 @@ export default {
     <div class="card-css" v-for="operator in (selectedSpecialization ? filteredOperators : store.operators)"
       :key="operator.id">
       <h3>{{ operator.name }}</h3>
-      <img :src="'/public/img/' + operator.filename" alt="img" class="img-operator">
+      <img :src="'http://127.0.0.1:8000/storage/' + operator.file_path" alt="img" class="img-operator">
       <h4>{{ operator.description }}</h4>
       <h5>{{ operator.engagement_price }}</h5>
       <h5>{{ operator.phone }}</h5>
