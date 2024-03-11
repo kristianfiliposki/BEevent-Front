@@ -197,9 +197,6 @@ export default {
     color: #F6FB01;
 }
 
-
-
-
 .img-operator {
     min-height: 60%;
     width: 100%;
@@ -228,7 +225,7 @@ export default {
 }
 
 h4{
-    height: 8vh;
+    font-size: 0.7em;
 }
 
 .inputNum {
@@ -280,20 +277,18 @@ h4{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    min-height: 58vh;
 }
 
 .card-css {
-    min-height: 45vh;
-    width: calc(100% / 5);
+    min-height: 73vh;
+    width: calc(100% / 4);
     border-radius: 15px;
     margin: 1rem 2%;
     text-align: center;
     padding: 0.2rem;
-
     -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
     box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
-
-
     background-color: rgba(0, 0, 0, 0.121);
 
 }
