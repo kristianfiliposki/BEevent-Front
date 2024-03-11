@@ -75,21 +75,21 @@ export default {
             return operatorAverageRatings;
         },
         sortedOperators() {
-          const operators = this.filteredOperators;
+            const operators = this.filteredOperators;
 
-          return operators.sort((a, b) => {
-            const isASponsored = this.isOperatorSponsored(a.id);
-            const isBSponsored = this.isOperatorSponsored(b.id);
+            return operators.sort((a, b) => {
+                const isASponsored = this.isOperatorSponsored(a.id);
+                const isBSponsored = this.isOperatorSponsored(b.id);
 
-            if (isASponsored && !isBSponsored) {
-              return -1;
-            } else if (!isASponsored && isBSponsored) {
-              return 1;
-            } else {
-              // Se entrambi sponsorizzati o entrambi non sponsorizzati, mantieni l'ordine originale
-              return 0;
-            }
-          });
+                if (isASponsored && !isBSponsored) {
+                    return -1;
+                } else if (!isASponsored && isBSponsored) {
+                    return 1;
+                } else {
+                    // Se entrambi sponsorizzati o entrambi non sponsorizzati, mantieni l'ordine originale
+                    return 0;
+                }
+            });
         },
 
     },
@@ -116,7 +116,7 @@ export default {
                 });
             }
         },
-                isOperatorSponsored(operatorId) {
+        isOperatorSponsored(operatorId) {
             if (this.store.sponsoredOperators && Array.isArray(this.store.sponsoredOperators)) {
                 console.log('Sponsored Operators:', this.store.sponsoredOperators);
                 return this.store.sponsoredOperators.includes(operatorId);
@@ -128,22 +128,22 @@ export default {
         },
         /* generatrici di sponzorizzate */
         isOperatorSponsored(operatorId) {
-          const isSponsored = this.store.operator_sponsorships.some(sponsorship => sponsorship.operator_id === operatorId);
-          console.log(`Operatore ${operatorId} sponsorizzato: ${isSponsored}`);
-          return isSponsored;
+            const isSponsored = this.store.operator_sponsorships.some(sponsorship => sponsorship.operator_id === operatorId);
+            console.log(`Operatore ${operatorId} sponsorizzato: ${isSponsored}`);
+            return isSponsored;
         },
         activeSponsorships(operatorId) {
-          const sponsorships = this.store.operator_sponsorships.filter(s => s.operator_id === operatorId && this.isntSponsorshipExpired(s));
-          console.log(`Operatore ${operatorId} ha sponsorizzazioni attive: ${sponsorships.length > 0}`);
-          return sponsorships;
+            const sponsorships = this.store.operator_sponsorships.filter(s => s.operator_id === operatorId && this.isntSponsorshipExpired(s));
+            console.log(`Operatore ${operatorId} ha sponsorizzazioni attive: ${sponsorships.length > 0}`);
+            return sponsorships;
         },
         isntSponsorshipExpired(sponsorship) {
-          const currentDateTime = moment();
-          const startDate = moment(sponsorship.start_date, 'YYYY-MM-DD HH:mm:ss');
-          const endDate = moment(sponsorship.end_date, 'YYYY-MM-DD HH:mm:ss');
-          const isExpired = currentDateTime.isBetween(startDate, endDate);
-          console.log(`Sponsorizzazione ${sponsorship.id} è scaduta: ${!isExpired}`);
-          return isExpired;
+            const currentDateTime = moment();
+            const startDate = moment(sponsorship.start_date, 'YYYY-MM-DD HH:mm:ss');
+            const endDate = moment(sponsorship.end_date, 'YYYY-MM-DD HH:mm:ss');
+            const isExpired = currentDateTime.isBetween(startDate, endDate);
+            console.log(`Sponsorizzazione ${sponsorship.id} è scaduta: ${!isExpired}`);
+            return isExpired;
         },
     },
 
@@ -190,74 +190,78 @@ export default {
 
 
 
-<!-- Carosello per tutti gli operatori -->
-<section id="fakeBody" class="wrapper" ref="allOperators">
-  <div v-for="operator in sortedOperators" :key="operator.id" :class="{ 'card-css': true, 'sponsored': isOperatorSponsored(operator.id) }">
-    <!-- ... Existing card content ... -->
-    <img :src="'http://127.0.0.1:8000/storage/' + operator.file_path" alt="img" class="img-operator">
-    <h3>{{ operator.name }}</h3>
-    <h4>{{ operator.description }}</h4>
-    <h5>tariffa: {{ operator.engagement_price }}</h5>
-    <h3>Average Rating</h3>
-    <div class="stelline">
-        <div v-for=" in  (Math.round((operatorAverageRatings[operator.id])))">
-            <i class="fa-solid fa-star"></i>
-        </div>
-    </div>
+    <!-- Carosello per tutti gli operatori -->
+    <section id="fakeBody" class="wrapper" ref="allOperators">
+        <div v-for="operator in sortedOperators" :key="operator.id"
+            :class="{ 'card-css': true, 'sponsored': isOperatorSponsored(operator.id) }">
+            <!-- ... Existing card content ... -->
+            <img :src="'http://127.0.0.1:8000/storage/' + operator.file_path" alt="img" class="img-operator">
+            <h3>{{ operator.name }}</h3>
+            <h4>{{ operator.description }}</h4>
+            <h5>tariffa: {{ operator.engagement_price }}</h5>
+            <h3>Average Rating</h3>
+            <div class="stelline">
+                <div v-for=" in  (Math.round((operatorAverageRatings[operator.id])))">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
 
-    <router-link :to="{ name: 'detail', params: { id: operator.id } }">
-      <button class="btn">Visualizza</button>
-    </router-link>
-  </div>
-</section>
+            <router-link :to="{ name: 'detail', params: { id: operator.id } }">
+                <button class="btn">Visualizza</button>
+            </router-link>
+        </div>
+    </section>
 </template>
   
   
   
 <style scoped>
 .sponsored {
-  /* Aggiungi qui gli stili per rendere gli operatori sponsorizzati dorati */
-  background-color: gold; /* Cambia questo con il tuo stile desiderato */
-  border: 2px solid gold; /* Aggiunto per rendere il bordo dorato */
+    /* Aggiungi qui gli stili per rendere gli operatori sponsorizzati dorati */
+    background-color: gold;
+    /* Cambia questo con il tuo stile desiderato */
+    border: 2px solid gold;
+    /* Aggiunto per rendere il bordo dorato */
 }
 
 .card-css {
-  /* Altri stili rimangono invariati */
-  min-height: 73vh;
-  width: calc(100% / 4);
-  border-radius: 15px;
-  margin: 1rem 2%;
-  text-align: center;
-  padding: 0.2rem;
-  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
-  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
-  background-color: rgba(0, 0, 0, 0.121);
+    /* Altri stili rimangono invariati */
+    min-height: 73vh;
+    width: calc(100% / 4);
+    border-radius: 15px;
+    margin: 1rem 2%;
+    text-align: center;
+    padding: 0.2rem;
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+    background-color: rgba(0, 0, 0, 0.121);
 }
 
 
 .card-css.sponsored .img-operatorS {
-  width: 100%;
-  height: 60%;
-  object-fit: cover;
-  object-position: top;
-  border-radius: 10% 10% 0 0;
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 10% 10% 0 0;
 }
 
 
 .card-css.sponsored .stelline {
-  display: flex;
-  justify-content: center;
-  color: gold;
+    display: flex;
+    justify-content: center;
+    color: gold;
 }
 
 .card-css.sponsored button.btn {
-  background-color: gold; /* Colore del pulsante dorato */
-  color: #000000;
+    background-color: gold;
+    /* Colore del pulsante dorato */
+    color: #000000;
 }
 
 
 #welcome {
-    margin:0.4em 2em;
+    margin: 0.4em 2em;
     width: 100%;
     height: 10vh;
     display: flex;
@@ -283,12 +287,6 @@ export default {
     color: #F6FB01;
 }
 
-.img-operator {
-    min-height: 60%;
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-}
 
 
 .filterWrap {
@@ -297,9 +295,11 @@ export default {
     align-items: center;
     justify-content: center;
 }
-.inputName{
+
+.inputName {
     width: 70%;
 }
+
 .inputDiv {
     width: 15%;
     height: 3rem;
@@ -307,10 +307,10 @@ export default {
 
 .inputDiv h4 {
     color: #FD129E;
-    max-height:2em ;
+    max-height: 2em;
 }
 
-h4{
+h4 {
     font-size: 0.7em;
 }
 
@@ -351,13 +351,7 @@ h4{
     transform: translateY(-25%);
 }
 
-.img-operator {
 
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    object-position: center;
-}
 
 .wrapper {
     display: flex;
@@ -379,122 +373,130 @@ h4{
 
 }
 
-.img-operatorS {
-
-    width: 30%;
+.img-operator {
+    width: 100%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     object-position: center;
+    border-radius: 15px 15px 0 0;
 }
-.stelline{
+
+.stelline {
     display: flex;
     justify-content: center;
     color: violet;
     margin: 0.6em;
 }
+
 .btn {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 5px;
-  background-color: #774caf;
-  color: white;
-  border: none;
-  transition: background-color 0.3s;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #774caf;
+    color: white;
+    border: none;
+    transition: background-color 0.3s;
 }
 
 .btn:hover {
-  background-color: #45a049;
+    background-color: #45a049;
 }
 
 .btn:active {
-  background-color: #3e8e41;
+    background-color: #3e8e41;
 }
 
 @media screen and (max-width: 768px) {
-  
+
     #welcome {
-    margin:0.4em 2em;
-    width: 100%;
-    height: 10vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: sticky;
-    color: white;
-    font-size: 1.2em;
-}
+        margin: 0.4em 2em;
+        width: 100%;
+        height: 10vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: sticky;
+        color: white;
+        font-size: 1.2em;
+    }
+
     .card-css {
-    width: calc(100% / 3);
-    border-radius: 15px;
-    margin: 1rem 2%;
-    text-align: center;
-    padding: 0.2rem;
+        width: calc(100% / 3);
+        border-radius: 15px;
+        margin: 1rem 2%;
+        text-align: center;
+        padding: 0.2rem;
 
-    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
-    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+        -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+        box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
 
 
-    background-color: rgba(0, 0, 0, 0.121);
+        background-color: rgba(0, 0, 0, 0.121);
 
     }
+
     .filterWrap {
-    background-color: #090021;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+        background-color: #090021;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
     }
+
     .inputDiv[data-v-0b7fbc46] {
-    width: calc(100% / 7);
-    height: 3rem;
-    margin: 4% 7%;
-}
+        width: calc(100% / 7);
+        height: 3rem;
+        margin: 4% 7%;
+    }
 
 }
 
 @media screen and (max-width: 480px) {
-  
-  #welcome {
-  margin:0.4em 2em;
-  width: 100%;
-  height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: sticky;
-  color: white;
-  font-size: 1.2em;
+
+    #welcome {
+        margin: 0.4em 2em;
+        width: 100%;
+        height: 10vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: sticky;
+        color: white;
+        font-size: 1.2em;
+    }
+
+    .card-css {
+        width: calc(100% - 1%);
+        border-radius: 15px;
+        margin: 2%;
+        text-align: center;
+        padding: 0.2rem;
+
+        -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+        box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+
+
+        background-color: rgba(0, 0, 0, 0.121);
+
+    }
+
+    .filterWrap {
+        background-color: #090021;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .inputDiv[data-v-0b7fbc46] {
+        width: calc(100% / 7);
+        height: 3rem;
+        margin: 4% 7%;
+    }
+
 }
-  .card-css {
-  width: calc(100% - 1% );
-  border-radius: 15px;
-  margin: 2%;
-  text-align: center;
-  padding: 0.2rem;
-
-  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
-  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
-
-
-  background-color: rgba(0, 0, 0, 0.121);
-
-  }
-  .filterWrap {
-  background-color: #090021;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  }
-  .inputDiv[data-v-0b7fbc46] {
-  width: calc(100% / 7);
-  height: 3rem;
-  margin: 4% 7%;
-}
-
-}
-
 </style>
