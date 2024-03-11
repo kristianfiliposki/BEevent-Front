@@ -68,7 +68,7 @@ h1 {
 
   padding: 1.5rem;
   margin: 0 auto;
-  background-color: #0000001f;
+  background-color: #0000005b;
 
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -84,7 +84,7 @@ h1 {
   height: 40vh;
   width: 100%;
   margin: 0 auto;
-  border-radius: 0.4rem;
+
 
 
 
@@ -111,7 +111,7 @@ h1 {
 .banner-container {
   display: flex;
   flex-wrap: wrap;
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
   justify-content: space-evenly;
   align-items: center;
@@ -125,8 +125,49 @@ h1 {
   width: 30%;
   height: 14rem;
   background-color: #000000b6;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   margin: 2rem 0;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 0.6rem;
+  text-align: center;
 }
+
+/*media query cards*/
+@media only screen and (max-width: 968px) {
+  .presentazione {
+    height: fit-content;
+  }
+
+  h1 {
+    color: #F6FB01;
+    font-size: 2rem;
+  }
+
+  .presentationCopy {
+    text-align: center;
+    width: 95%;
+
+  }
+
+  .banner-container {
+    width: 95%;
+    margin: 0 auto;
+    padding: 0.5rem;
+  }
+
+  .banner {
+    width: 30%;
+    height: 14rem;
+    background-color: #000000b6;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    margin: 2rem 0;
+    padding: 0.3rem;
+    border-radius: 0.6rem;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 468px) {}
 </style>
