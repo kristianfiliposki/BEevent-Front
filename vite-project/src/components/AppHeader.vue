@@ -16,14 +16,8 @@ export default {
       <a href="/">Homepage</a>
       <a href="/welcome">Chi siamo</a>
       <a href="http://localhost:8000/register">Registrati/log in</a>
-      <a href="/ricerca">ricerca avanzata</a>
-
-      <form id="logout-form" action="" method="POST" class="d-none">
-        <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-          <i class="fa-solid fa-sign-out-alt fa-lg fa-fw"></i>
-        </a>
-      </form>
-    </div>
+      <a href="/ricerca">Ricerca Avanzata</a>
+        </div>
 
 
   </header>
@@ -63,6 +57,7 @@ export default {
   color: #FD129E;
   text-decoration: none;
   font-size: 1em;
+  font-weight: bolder;
 }
 
 .link-rights {
