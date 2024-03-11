@@ -246,6 +246,8 @@ export default {
 
 .card-css2.sponsored button.btn {
   background-color: gold; /* Colore del pulsante dorato */
+  color: #000000 !important;
+
 }
 
 
@@ -288,6 +290,7 @@ export default {
 
 .card-css.sponsored button.btn {
   background-color: gold; /* Colore del pulsante dorato */
+  color: #000000 !important;
 }
 
 
