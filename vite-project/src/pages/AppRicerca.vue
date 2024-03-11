@@ -212,9 +212,9 @@ export default {
         </div>
     </section>
 </template>
-  
-  
-  
+
+
+
 <style scoped>
 .sponsored {
     /* Aggiungi qui gli stili per rendere gli operatori sponsorizzati dorati */
@@ -226,7 +226,7 @@ export default {
 
 .card-css {
     /* Altri stili rimangono invariati */
-    min-height: 73vh;
+    height: 40rem;
     width: calc(100% / 4);
     border-radius: 15px;
     margin: 1rem 2%;
@@ -301,8 +301,9 @@ export default {
 }
 
 .inputDiv {
-    width: 15%;
+    width: 50%;
     height: 3rem;
+    margin-left: 3%;
 }
 
 .inputDiv h4 {
@@ -361,7 +362,7 @@ h4 {
 }
 
 .card-css {
-    min-height: 73vh;
+    height: 40rem;
     width: calc(100% / 4);
     border-radius: 15px;
     margin: 1rem 2%;
@@ -426,6 +427,7 @@ h4 {
 
     .card-css {
         width: calc(100% / 3);
+        height: 27rem;
         border-radius: 15px;
         margin: 1rem 2%;
         text-align: center;
@@ -453,9 +455,19 @@ h4 {
         margin: 4% 7%;
     }
 
+    .inputNum {
+        width: 100%;
+        margin: 0.2rem auto;
+        border-radius: 0.5rem;
+    }
+
+    .inputName {
+        width: 100%;
+    }
+
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 468px) {
 
     #welcome {
         margin: 0.4em 2em;
@@ -472,6 +484,7 @@ h4 {
     .card-css {
         width: calc(100% - 1%);
         border-radius: 15px;
+        height: 40rem;
         margin: 2%;
         text-align: center;
         padding: 0.2rem;
@@ -498,5 +511,20 @@ h4 {
         margin: 4% 7%;
     }
 
+    .inputNum {
+        width: 160%;
+        margin: 0.2rem auto;
+        border-radius: 0.5rem;
+    }
+
+    .inputName {
+        width: 150%;
+    }
+
+    .inputRange {
+    width: 120%;
+    height: 0.5rem;
+    border-radius: 0.2rem;
+}
 }
 </style>
