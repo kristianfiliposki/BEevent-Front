@@ -42,7 +42,68 @@ export default {
   </div>
 
   <div class="jumbo">
-    <p class="centro-jumbo">Riempi il palco!</p>
+    <div class="jumboLinks">
+      <a href="http://localhost:5174/ricerca?specialization=Pianoforte"> <img class="specimg"
+          src="../../public/img/IMG_1189.jpg" alt="img">
+      </a>
+      <a href="http://localhost:5174/ricerca?specialization=Chitarra"> <img class="specimg"
+          src="../../public/img/IMG_1190.jpg" alt="img">
+      </a>
+      <a href="http://localhost:5174/ricerca?specialization=Violino"> <img class="specimg"
+          src="../../public/img/IMG_1191.jpg" alt="img">
+      </a>
+      <a href="http://localhost:5174/ricerca?specialization=Canto"> <img class="specimg"
+          src="../../public/img/IMG_1192.jpg" alt="img">
+      </a>
+      <a href="http://localhost:5174/ricerca?specialization=Batteria"> <img class="specimg"
+          src="../../public/img/IMG_1194.jpg" alt="img">
+      </a>
+    </div>
+    <div class="jumboLinks2">
+      <a href="http://localhost:5174/ricerca?specialization=Musicista"> <img class="specimg"
+          src="../../public/img/IMG_1195.jpg" alt="img">
+      </a>
+
+
+      <p class="centro-jumbo">Riempi il palco!</p>
+      <a href="http://localhost:5174/ricerca?specialization=Fonico"> <img class="specimg"
+          src="../../public/img/IMG_1196.jpg" alt="img">
+      </a>
+    </div>
+
+    <div class="jumboLinks2">
+      <a href="http://localhost:5174/ricerca?specialization=Produttore"> <img class="specimg"
+          src="../../public/img/IMG_1197.jpg" alt="img">
+      </a>
+      <a href="http://localhost:5174/ricerca?specialization=Tecnico+del+suono"> <img class="specimg"
+          src="../../public/img/IMG_1198.jpg" alt="img">
+      </a>
+      <a href="http://localhost:5174/ricerca?specialization=Tecnico+Luci"> <img class="specimg"
+          src="../../public/img/IMG_1199.jpg" alt="img">
+      </a>
+      <a href="http://localhost:5174/ricerca?specialization=Tastierista"> <img class="specimg"
+          src="../../public/img/IMG_1201.jpg" alt="img">
+      </a>
+
+
+    </div>
+
+    <div class="jumboLinks3">
+      <a href="http://localhost:5174/ricerca?specialization=Violoncellista"> <img class="specimg"
+          src="../../public/img/IMG_1202.jpg" alt="img">
+      </a>
+      <a href="http://localhost:5174/ricerca?specialization=Saxofonista"> <img class="specimg"
+          src="../../public/img/IMG_1203.jpg" alt="img">
+      </a>
+      <a href="http://localhost:5174/ricerca?specialization=Trombettista"> <img class="specimg"
+          src="../../public/img/IMG_1205.jpg" alt="img">
+      </a>
+      <a href="http://localhost:5174/ricerca?specialization=Dj"> <img class="specimg" src="../../public/img/IMG_1206.jpg"
+          alt="img">
+      </a>
+
+
+    </div>
 
   </div>
   <div class="preFooter">
@@ -121,12 +182,46 @@ h5 {
 
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
 
 
   -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px 36px 20px 8px rgba(255, 253, 225, 0.695);
   box-shadow: 0px 10px 13px -7px #000000, 0px 36px 40px 8px rgba(255, 253, 225, 0.132);
+}
+
+.jumboLinks {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.jumboLinks2 {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.jumboLinks3 {
+  width: 55%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.specimg {
+  height: 5rem;
+  margin: 1% 3% 1% 1%;
+  border-radius: 12em;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000, 0px 36px 20px 8px rgba(255, 253, 225, 0.695);
+  box-shadow: 0px 10px 13px -7px #000000, 0px 36px 40px 8px rgba(255, 253, 225, 0.132);
+}
+
+.specimg:hover {
+  height: 7rem;
 }
 
 .centro-jumbo {
