@@ -446,13 +446,14 @@ s .subtitle {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    height: 84%;
+    height: fit-content;
     background-color: rgba(0, 0, 0, 0.318);
   }
 
   #fakeBody {
     width: 100vw;
-    overflow: visible;
+    height: fit-content;
+
 
     display: block;
 
