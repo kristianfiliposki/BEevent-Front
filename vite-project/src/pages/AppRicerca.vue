@@ -205,11 +205,6 @@ export default {
       </div>
     </div>
 
-    <!-- Aggiunta del testo o dell'icona per indicare se è sponsorizzato -->
-    <div v-if="isOperatorSponsored(operator.id)" class="sponsored-text">
-      <p>Sponsorizzato</p>
-    </div>
-
     <router-link :to="{ name: 'detail', params: { id: operator.id } }">
       <button class="btn">Visualizza</button>
     </router-link>
@@ -241,6 +236,26 @@ export default {
 
 .sponsored h3 {
   color: gold; /* Cambia il colore del testo per le carte sponsorizzate */
+}
+
+.card-css.sponsored .img-operatorS {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10% 10% 0 0;
+}
+
+
+.card-css.sponsored .stelline {
+  display: flex;
+  justify-content: center;
+  color: gold;
+}
+
+.card-css.sponsored button.btn {
+  background-color: gold; /* Colore del pulsante dorato */
+  color: #000000;
 }
 
 

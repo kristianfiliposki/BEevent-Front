@@ -103,6 +103,8 @@ export default {
       <input class="inputShow" name="user_email" type="email" placeholder="Inserisci la tua email">
       <input id="invisiButton" type="submit" value="Invia">
     </form>
+
+    
     <form v-if="showforms2" action="http://127.0.0.1:8000/review" method="GET">
       <input name="operator_id" type="hidden" v-model="operator.id">
       <textarea class="text2" name="comment" cols="50" rows="4"
@@ -188,11 +190,12 @@ export default {
 }
 
 .text {
-  width: 25rem;
+  width: 80%;
   height: 5rem;
   margin-left: 5%;
   border: 1px solid rgba(255, 255, 255, 0.582);
   background-color: rgba(255, 255, 255, 0.582);
+  
 }
 
 textarea {
@@ -201,7 +204,7 @@ textarea {
 }
 
 .text2 {
-  width: 25rem;
+  width: 80%;
   height: 5rem;
   margin-left: 5%;
   border: 1px solid rgba(255, 255, 255, 0.582);
@@ -217,7 +220,7 @@ textarea {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 28.2vh;
+  min-height: 10vh;
 }
 
 /* Stile per l'input email */
@@ -249,6 +252,7 @@ textarea {
 form {
   display: flex;
   flex-direction: column;
+  margin: 0.4rem;
 }
 
 #invisiButton {
@@ -265,6 +269,7 @@ form {
   width: 20%;
   transition: background-color 0.3s;
   margin-left: 86%;
+  margin: 0.1em;
 }
 
 #invisiButton:hover {
