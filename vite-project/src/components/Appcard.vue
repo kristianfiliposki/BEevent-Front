@@ -255,18 +255,18 @@ s .subtitle {
 
 #fakeBody {
   width: 100%;
-  height: 62vh;
+  height: 65vh;
   overflow-y: auto;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   margin: 2rem 0;
   flex-direction: column;
+  scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
 }
 
 .card-css {
   width: calc((100% / 4));
-
   border-radius: 15px;
   margin: 9px;
   display: flex;
@@ -275,6 +275,10 @@ s .subtitle {
   align-items: center;
   height: 60vh;
   background-color: rgba(255, 255, 255, 0.413);
+}
+
+.card-css h4{
+  height: 2.5rem;
   overflow: auto;
 }
 
@@ -394,7 +398,6 @@ s .subtitle {
 
   .card-css2 {
     width: 23%;
-    aspect-ratio: 1;
     border-radius: 15px;
     margin: 9px 5%;
     text-align: center;
