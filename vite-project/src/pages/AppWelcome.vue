@@ -25,7 +25,7 @@ export default {
 <template>
     <AppPresentation />
 
-    <Appcard />
+
     <router-view></router-view>
 </template>
 <style scoped></style>
