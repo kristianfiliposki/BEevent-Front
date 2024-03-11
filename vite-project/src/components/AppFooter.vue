@@ -116,6 +116,20 @@ a{
     }
 
 }
+@media only screen and (max-width: 468px) {
+    *{
+        font-size: 0.8em;
+    }
+
+    .diritto{
+        display: flex;
+        flex-direction: column;
+    }
+    .diritto span{
+        margin: 0;
+    }
+
+}
 
 
 
