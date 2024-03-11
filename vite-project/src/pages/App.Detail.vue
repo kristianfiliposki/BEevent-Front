@@ -216,7 +216,7 @@ textarea {
 .textareacontainer {
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   height: 28.2vh;
 }
 
@@ -230,6 +230,7 @@ textarea {
   outline: none;
   transition: border-color 0.3s;
   margin-left: 4%;
+  margin-top: 2%;
 
 }
 
@@ -306,5 +307,56 @@ form {
 }
 #flexino{
   display: inline;
+}
+/* Media queries */
+@media only screen and (max-width: 768px) {
+
+.logoWrap {
+  width: 20%;
+  height: 80%;
+
+}
+
+
+
+
+
+.link-rights {
+  width: 70%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+}
+
+
+#navbar a {
+  margin: 0% 4% 0% 0%;
+  font-size: 1.2rem;
+}
+}
+
+@media only screen and (max-width: 468px) {
+.link-rights {
+  width: 70%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+
+
+}
+
+#navbar {
+  min-height: 10rem;
+}
+
+.link-rights a {
+  margin: 2rem;
+  font-size: 1.6rem;
+}
 }
 </style>
