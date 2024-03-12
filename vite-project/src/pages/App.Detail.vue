@@ -321,4 +321,56 @@ form {
 #flexino {
   display: inline;
 }
+
+@media only screen and (max-width: 768px) {
+  #invisiButton {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #774caf;
+  color: white;
+  border: none;
+  width: 20%;
+  transition: background-color 0.3s;
+  margin-left: 83%;
+}
+#invisiButton2 {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #774caf;
+  color: white;
+  border: none;
+  width: 20%;
+  margin-left: 80%;
+  transition: background-color 0.3s;
+}
+}
+@media only screen and (max-width: 468px){
+  #navbar {
+  width: 118%;
+  height: 20vh;
+  background-color: #090021;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+
+}
+.textareacontainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  min-height: 10vh;
+  height: 43vh;
+}
+}
 </style>
