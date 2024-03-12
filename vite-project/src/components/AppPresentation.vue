@@ -121,7 +121,7 @@ export default {
 </template>
 <style scoped>
 .presentazione {
-  height: 80vh;
+  height: 40rem;
   background-image: url("https://staticgeopop.akamaized.net/wp-content/uploads/sites/32/2022/10/iStock-177303568.jpg?im=AspectCrop=(16,9);");
   background-size: cover;
   background-position: bottom;
