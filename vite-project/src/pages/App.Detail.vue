@@ -104,11 +104,10 @@ export default {
       <input id="invisiButton" type="submit" value="Invia">
     </form>
 
-    
+
     <form v-if="showforms2" action="http://127.0.0.1:8000/review" method="GET">
       <input name="operator_id" type="hidden" v-model="operator.id">
-      <textarea class="text2" name="comment" cols="50" rows="4"
-        placeholder="Scrivi la tua recensione qui..."></textarea>
+      <textarea class="text2" name="comment" cols="50" rows="4" placeholder="Scrivi la tua recensione qui..."></textarea>
       <input class="inputShow" name="author" type="text" placeholder="Inserisci il tuo nome">
       <input class="inputShow" name="user_email" type="email" placeholder="Inserisci la tua email">
       <select class="inputShow" name="vote_id">
@@ -117,7 +116,6 @@ export default {
       <input id="invisiButton2" type="submit" value="Invia">
     </form>
   </div>
-
 </template>
 
 
@@ -195,14 +193,18 @@ export default {
   margin-left: 5%;
   border: 1px solid rgba(255, 255, 255, 0.582);
   background-color: rgba(255, 255, 255, 0.582);
-  
+
 }
 
 textarea {
   border-radius: 0, 6rem;
 
 }
-#operatorImg{
+
+#operatorImg {
+  width: 35vw;
+  max-height: 80vh;
+  object-fit: cover;
   border-radius: 20px;
   -webkit-box-shadow: -10px 0px 13px -7px #ffcc00, 10px 0px 13px -7px #ffcc00, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
   box-shadow: -10px 0px 13px -7px #ffcc00, 10px 0px 13px -7px #ffcc00, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
@@ -259,7 +261,7 @@ form {
   display: flex;
   flex-direction: column;
   margin: 0.4rem;
-  
+
 }
 
 #invisiButton {
@@ -315,7 +317,8 @@ form {
   margin: 1% 3% 1% 1%;
   border-radius: 12em;
 }
-#flexino{
+
+#flexino {
   display: inline;
 }
 </style>
