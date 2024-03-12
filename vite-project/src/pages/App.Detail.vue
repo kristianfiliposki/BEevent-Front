@@ -69,7 +69,7 @@ export default {
   <div class="container" v-if="operator">
     <div class="card">
       <h1>Dettagli di {{ operator.name }}</h1>
-      <img :src="'http://127.0.0.1:8000/storage/' + operator.file_path" alt="img">
+      <img id="operatorImg" :src="'http://127.0.0.1:8000/storage/' + operator.file_path" alt="img">
       <h2>{{ operator.description }}</h2>
       <p>{{ operator.address }}</p>
       <p>In attività dal :{{ operator.foundation_year }}</p>
@@ -202,6 +202,11 @@ textarea {
   border-radius: 0, 6rem;
 
 }
+#operatorImg{
+  border-radius: 20px;
+  -webkit-box-shadow: -10px 0px 13px -7px #ffcc00, 10px 0px 13px -7px #ffcc00, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+  box-shadow: -10px 0px 13px -7px #ffcc00, 10px 0px 13px -7px #ffcc00, 0px 5px 9px 6px rgba(0, 0, 0, 0.38);
+}
 
 .text2 {
   width: 80%;
@@ -219,7 +224,7 @@ textarea {
 .textareacontainer {
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   min-height: 10vh;
 }
 
@@ -233,6 +238,7 @@ textarea {
   outline: none;
   transition: border-color 0.3s;
   margin-left: 4%;
+  margin-top: 2%;
 
 }
 
@@ -253,6 +259,7 @@ form {
   display: flex;
   flex-direction: column;
   margin: 0.4rem;
+  
 }
 
 #invisiButton {
@@ -269,7 +276,6 @@ form {
   width: 20%;
   transition: background-color 0.3s;
   margin-left: 86%;
-  margin: 0.1em;
 }
 
 #invisiButton:hover {
