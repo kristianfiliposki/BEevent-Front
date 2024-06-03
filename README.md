@@ -9,3 +9,9 @@ Nel front-end abbiamo utilizzato vue.js importando i dati in un file javascript,
 
 Gli artisti possono essere visualizzati dagli utenti e si possono vedere i dettagli di ognuno.
 Gli artisti possono essere filtrati attraverso una ricerca veloce o una ricerca avanzata.
+
+
+La parte back-end l'abbiamo messa in questa Repo: https://github.com/FrancescoBonanno1/BEvents
+
+
+Grazie!!!
